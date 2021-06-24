@@ -20,3 +20,13 @@ SequentialColors >> initialize [
 	startingColor := Color white.
 	endingColor := Color black
 ]
+
+{ #category : #accessing }
+SequentialColors >> startColor: aStartingColor endColor: anEndingColor [ 
+
+	startingColor := aStartingColor .
+	endingColor := anEndingColor .
+
+	
+ 
+]
