@@ -13,6 +13,32 @@ Class {
 	#category : #ColorPalette
 }
 
+{ #category : #accessing }
+SequentialColors >> gradient: numberOfColors [
+	
+	| stepR stepG stepB colors |
+	"self halt."
+	
+	stepR := (endingColor red - startingColor red) / numberOfColors.
+	stepG := (endingColor green - startingColor green) / numberOfColors.
+	stepB := (endingColor blue - startingColor blue) / numberOfColors.
+
+	colors := OrderedCollection new.
+	colors add: startingColor.
+
+	(2 to: numberOfColors-1) do: [ :i |
+    colors add: (Color
+        r: ((colors last red) + stepR)
+        g: ((colors last green) + stepG)
+        b: ((colors last blue)+ stepB)) ].
+    
+	colors add: endingColor.
+	^ colors
+
+
+	
+]
+
 { #category : #initialization }
 SequentialColors >> initialize [ 
 
