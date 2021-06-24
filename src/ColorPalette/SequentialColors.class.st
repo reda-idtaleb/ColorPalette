@@ -55,7 +55,7 @@ SequentialColors >> makePalette: numberOfColors [
 	| colors |
 	colors := self gradient: numberOfColors.
 	"self halt."
-	GTInspector inspect: (QualitativeColorPalette withColors: colors).
+	GTInspector inspect: colors.
 
 	
 
