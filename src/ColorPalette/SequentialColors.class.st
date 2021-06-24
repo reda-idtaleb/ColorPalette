@@ -48,6 +48,21 @@ SequentialColors >> initialize [
 ]
 
 { #category : #accessing }
+SequentialColors >> makePalette: numberOfColors [
+	
+	"The integer represent the precision of the gradient"
+	
+	| colors |
+	colors := self gradient: numberOfColors.
+	"self halt."
+	GTInspector inspect: (QualitativeColorPalette withColors: colors).
+
+	
+
+	
+]
+
+{ #category : #accessing }
 SequentialColors >> startColor: aStartingColor endColor: anEndingColor [ 
 
 	startingColor := aStartingColor .
