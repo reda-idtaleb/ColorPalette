@@ -1,6 +1,6 @@
 Class {
 	#name : #BaselineOfColorPalette,
-	#superclass : #Object,
+	#superclass : #BaselineOf,
 	#category : #BaselineOfColorPalette
 }
 
