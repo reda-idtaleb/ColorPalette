@@ -15,6 +15,15 @@ Class {
 }
 
 { #category : #accessing }
+ClPDivergingColors class >> indexOfTheMiddleColor: aNumberOfColors [
+
+	| index |
+	^ index := aNumberOfColors even
+		           ifTrue: [ aNumberOfColors // 2 ]
+		           ifFalse: [ aNumberOfColors // 2 + 1 ]
+]
+
+{ #category : #accessing }
 ClPDivergingColors >> calculateStepsRGBBetween: startColor and: endColor [
 
 	| collection stepR stepG stepB halfNumberColors|
