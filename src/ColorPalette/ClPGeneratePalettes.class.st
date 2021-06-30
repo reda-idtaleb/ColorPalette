@@ -14,6 +14,12 @@ Class {
 	#category : #'ColorPalette-Palettes'
 }
 
+{ #category : #testing }
+ClPGeneratePalettes class >> isAbstract [
+	
+	^ self == ClPGeneratePalettes 
+]
+
 { #category : #accessing }
 ClPGeneratePalettes >> generatedPalette: anObject [
 
