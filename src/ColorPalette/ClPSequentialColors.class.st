@@ -30,17 +30,18 @@ ClPSequentialColors >> calculateStepsRGBBetween: startColor and: endColor [
 	
 ]
 
-{ #category : #accessing }
-ClPSequentialColors >> create: aNumberOfColors colorsWith: stepsRGB beginWith: aStartingColor [
+{ #category : #private }
+ClPSequentialColors >> generateColorsStartWith: aStartingColor respecting: stepsRGB [
 	
 	| colors |
 	colors := OrderedCollection new.
 	colors add: aStartingColor.
-	(2 to: aNumberOfColors - 1) do: [ :i | 
+	(2 to: numberOfColors - 1) do: [ :i | 
 		colors add: (Color
 				 r: colors last red + stepsRGB first
 				 g: colors last green + stepsRGB second
 				 b: colors last blue + stepsRGB last) ].
+	colors add: endingColor.		
 	^ colors
 
 ]
