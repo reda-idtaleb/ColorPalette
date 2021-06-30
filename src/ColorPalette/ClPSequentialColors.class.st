@@ -47,14 +47,13 @@ ClPSequentialColors >> generateColorsStartWith: aStartingColor respecting: steps
 ]
 
 { #category : #accessing }
-ClPSequentialColors >> gradient: aNumberOfColors [
+ClPSequentialColors >> gradient [
 
-	| stepsRGB colors |
-	stepsRGB := self calculateStepsRGBBetween: startingColor and: endingColor.
-	colors := self create: aNumberOfColors colorsWith: stepsRGB beginWith: startingColor.
-	colors add: endingColor.
-	self generatedPalette: colors.
-	^ colors
+	| stepsRGB |
+	stepsRGB := self
+		            calculateStepsRGBBetween: startingColor
+		            and: endingColor.
+	^ self generateColorsStartWith: startingColor respecting: stepsRGB
 ]
 
 { #category : #initialization }
@@ -68,7 +67,7 @@ ClPSequentialColors >> initialize [
 { #category : #accessing }
 ClPSequentialColors >> makePalette [
 	 
-	GTInspector inspect: (self gradient: numberOfColors).
+	^ self gradient.
 
 	
 
