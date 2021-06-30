@@ -16,3 +16,9 @@ ClPQualitativeColors >> initialize [
 	super initialize .
 	startingColor := Color blue
 ]
+
+{ #category : #accessing }
+ClPQualitativeColors >> startingColor: aColor [
+
+	startingColor := aColor
+]
