@@ -10,6 +10,18 @@ Class {
 	#category : #'ColorPalette-Palettes'
 }
 
+{ #category : #'instance creation' }
+ClPQualitativeColors >> buildAWheelUpTo: endingColor [
+
+	| wheel |	
+	
+	wheel := startingColor wheel: 60. "a segment of 180 units(colors)"
+	wheel do: [ :each | 
+		each = endingColor ifTrue: [ ^ wheel copyUpTo: each ]].
+	^ wheel
+		
+]
+
 { #category : #initialization }
 ClPQualitativeColors >> initialize [ 
 
