@@ -33,6 +33,29 @@ ClPDivergingColors >> calculateStepsRGBBetween: startColor and: endColor [
 ]
 
 { #category : #accessing }
+ClPDivergingColors >> createColorsWith: stepsRGB1 and: stepsRGB2 [
+
+	| colors indexMiddleColor |
+	indexMiddleColor := self class indexOfTheMiddleColor: numberOfColors.
+	colors := OrderedCollection new.
+	colors add: startingColor.
+	2 to: numberOfColors - 1 do: [ :i | 
+		i < indexMiddleColor ifTrue: [ 
+			colors add: (Color
+					 r: colors last red + stepsRGB1 first
+					 g: colors last green + stepsRGB1 second
+					 b: colors last blue + stepsRGB1 last) ].
+		i = indexMiddleColor ifTrue: [ colors add: middleColor ].
+		i > indexMiddleColor ifTrue: [ 
+			colors add: (Color
+					 r: colors last red + stepsRGB2 first
+					 g: colors last green + stepsRGB2 second
+					 b: colors last blue + stepsRGB2 last) ] ].
+	colors add: endingColor.
+	^ colors
+]
+
+{ #category : #accessing }
 ClPDivergingColors >> gradient [
 
 	| stepsRGB1 stepsRGB2 colors |
