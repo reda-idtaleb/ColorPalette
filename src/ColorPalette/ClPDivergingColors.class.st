@@ -90,3 +90,11 @@ ClPDivergingColors >> makePalette [
 
 	GTInspector inspect: self gradient.
 ]
+
+{ #category : #accessing }
+ClPDivergingColors >> s: aStartinColor m: aMiddleColor e: anEndingColor [
+
+	startingColor := aStartinColor .
+	middleColor := aMiddleColor.
+	endingColor := anEndingColor 
+]
