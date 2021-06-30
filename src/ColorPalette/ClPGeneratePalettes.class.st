@@ -8,8 +8,7 @@ Class {
 	#name : #ClPGeneratePalettes,
 	#superclass : #Object,
 	#instVars : [
-		'numberOfColors',
-		'generatedPalette'
+		'numberOfColors'
 	],
 	#category : #'ColorPalette-Palettes'
 }
@@ -18,6 +17,12 @@ Class {
 ClPGeneratePalettes class >> isAbstract [
 	
 	^ self == ClPGeneratePalettes 
+]
+
+{ #category : #generating }
+ClPGeneratePalettes >> generate [ 
+
+	GTInspector inspect: self makePalette
 ]
 
 { #category : #accessing }
