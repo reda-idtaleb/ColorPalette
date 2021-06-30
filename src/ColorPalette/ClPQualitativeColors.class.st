@@ -32,7 +32,7 @@ ClPQualitativeColors >> initialize [
 { #category : #accessing }
 ClPQualitativeColors >> makePalette [
 
-	GTInspector inspect: self qualitative.
+	^ self qualitative.
 ]
 
 { #category : #'instance creation' }
@@ -45,7 +45,6 @@ ClPQualitativeColors >> qualitative [
 	parts := wheel size // numberOfColors.
 	1 to: wheel size do: [ :i | 
 		(i-1) % parts = 0 ifTrue: [ colors add: (wheel at: i) ] ].
-	generatedPalette := colors.
 	^ colors
 ]
 
