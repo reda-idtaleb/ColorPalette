@@ -25,19 +25,13 @@ ClPGeneratePalettes >> generate [
 	GTInspector inspect: self makePalette
 ]
 
-{ #category : #accessing }
-ClPGeneratePalettes >> generatedPalette: anObject [
-
-	generatedPalette := anObject
-]
-
 { #category : #'gt-inspection' }
 ClPGeneratePalettes >> gtInspectorColorsIn: composite [
 	<gtInspectorPresentationOrder: 0>
 	
 	^ composite fastTable
 		title: 'Colors';
-		display: [ generatedPalette ];
+		display: [ self makePalette ];
 		beMultiple;
 		enableElementIndex;
 		wantsAutomaticRefresh: true;
