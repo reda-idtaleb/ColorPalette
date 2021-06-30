@@ -64,18 +64,6 @@ ClPDivergingColors >> createColorsWith: stepsRGB1 and: stepsRGB2 [
 	^ colors
 ]
 
-{ #category : #accessing }
-ClPDivergingColors >> gradient [
-
-	| stepsRGB1 stepsRGB2 colors |
-
-	stepsRGB1 := self calculateStepsRGBBetween: startingColor and: middleColor. 
-	stepsRGB2 := self calculateStepsRGBBetween: middleColor and: endingColor. 
-	colors := self createColorsWith: stepsRGB1 and: stepsRGB2 .
-	self generatedPalette: colors.
-	^ colors
-]
-
 { #category : #initialization }
 ClPDivergingColors >> initialize [ 
 
@@ -88,7 +76,12 @@ ClPDivergingColors >> initialize [
 { #category : #accessing }
 ClPDivergingColors >> makePalette [
 
-	GTInspector inspect: self gradient.
+	| stepsRGB1 stepsRGB2 colors |
+
+	stepsRGB1 := self calculateStepsRGBBetween: startingColor and: middleColor. 
+	stepsRGB2 := self calculateStepsRGBBetween: middleColor and: endingColor. 
+	colors := self createColorsWith: stepsRGB1 and: stepsRGB2 .
+	^ colors
 ]
 
 { #category : #accessing }
