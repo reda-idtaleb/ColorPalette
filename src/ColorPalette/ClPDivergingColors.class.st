@@ -15,6 +15,24 @@ Class {
 }
 
 { #category : #accessing }
+ClPDivergingColors >> calculateStepsRGBBetween: startColor and: endColor [
+
+	| collection stepR stepG stepB halfNumberColors|
+	
+	halfNumberColors := numberOfColors // 2.
+	collection := OrderedCollection new.
+	stepR := endColor red - startColor red / halfNumberColors.
+	stepG := endColor green - startColor green / halfNumberColors.
+	stepB := endColor blue - startColor blue / halfNumberColors.
+	collection 
+			add: stepR value; 
+			add: stepG value; 	
+			add: stepB value.
+	^ collection
+	
+]
+
+{ #category : #accessing }
 ClPDivergingColors >> gradient [
 
 	| stepsRGB1 stepsRGB2 colors |
