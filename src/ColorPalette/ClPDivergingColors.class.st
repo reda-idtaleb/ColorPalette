@@ -25,3 +25,18 @@ ClPDivergingColors >> gradient [
 	self generatedPalette: colors.
 	^ colors
 ]
+
+{ #category : #initialization }
+ClPDivergingColors >> initialize [ 
+
+	super initialize .
+	startingColor := Color blue .
+	middleColor := Color white.
+	endingColor := Color black.
+]
+
+{ #category : #accessing }
+ClPDivergingColors >> makePalette [
+
+	GTInspector inspect: self gradient.
+]
