@@ -23,6 +23,24 @@ Color >> hclToRgb: hclColor [
 ]
 
 { #category : #'*ColorPalette' }
+Color >> labToHcl: colorLab [
+
+	"HCL(Hue-Chroma-Luminance) its a color space model
+	 more information on: https://en.wikipedia.org/wiki/HCL_color_space"
+
+	| h hcl |
+	hcl := Dictionary new.
+	h := ((colorLab at: #b) arcTan: (colorLab at: #a)) * (180 / Float pi).
+	hcl
+		at: #hue put: (h < 0
+				 ifTrue: [ h + 360 ]
+				 ifFalse: [ h ]);
+		at: #chroma put: ((colorLab at: #a) * (colorLab at: #a) + ((colorLab at: #b) * (colorLab at: #b))) sqrt;
+		at: #luminance put: (colorLab at: #luminance).
+	^ hcl
+]
+
+{ #category : #'*ColorPalette' }
 Color >> labToRgb: labColor [
 
 	"labColor is a dictionary representing the L*a*b* color format"
@@ -37,4 +55,16 @@ Color >> labToRgb: labColor [
 	g := (self lrgbToRgb:-0.9787684 * x + (1.9161415 * y) + (0.0334540 * z)) max:0.
 	b := (self lrgbToRgb:0.0719453 * x - (0.2289914 * y) + (1.4052427 * z)) max:0.
 	^ self class r: r / 255 g: g / 255 b: b / 255
+]
+
+{ #category : #'*ColorPalette' }
+Color >> xyzToLab: t [
+
+	| t1 t2 t3 |
+	t1 := 6 / 29.
+	t2 := 3 * t1 * t1.
+	t3 := t1 * t1 * t1.
+	^ t > t3
+		  ifTrue: [ t raisedTo: 1 / 3 ]
+		  ifFalse: [ t / t2 + 4 / 29 ]
 ]
