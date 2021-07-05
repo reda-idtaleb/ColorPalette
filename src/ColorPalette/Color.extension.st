@@ -58,6 +58,28 @@ Color >> labToRgb: labColor [
 ]
 
 { #category : #'*ColorPalette' }
+Color >> labToXyz: t [
+
+	"t is a number"
+
+	| t1 t2 |
+	t1 := 6 / 29.
+	t2 := 3 * t1 * t1.
+	^ t > t1
+		  ifTrue: [ t * t * t ]
+		  ifFalse: [ t2 * (t - 4 / 29) ]
+]
+
+{ #category : #'*ColorPalette' }
+Color >> lrgbToRgb: x [
+
+	"x is a number"
+	^ (255*(x <= 0.0031308
+		   ifTrue: [ 12.92 * x ]
+		   ifFalse: [ 1.055 * (x raisedTo: 1 / 2.4) - 0.055])) rounded | 0
+]
+
+{ #category : #'*ColorPalette' }
 Color >> rgbToHcl [
 	
 	"rgbToHcl first uses converting from RGB to L*a*b* before converting to HCL"
@@ -95,6 +117,19 @@ Color >> rgbToLab [
 		at: #b put: 200 * (y - z).
 	^ lab	
 			
+]
+
+{ #category : #'*ColorPalette' }
+Color >> rgbToLrgb: x [
+
+	"x is a number between 0 - 255"
+	
+	| x2 |
+	x2 := x .
+	^ x2 <=  0.04045 
+			ifTrue: [ x2 / 12.92 ]
+			ifFalse: [ ((x2+0.055)/1.055) raisedTo: 2.4 ]
+	
 ]
 
 { #category : #'*ColorPalette' }
