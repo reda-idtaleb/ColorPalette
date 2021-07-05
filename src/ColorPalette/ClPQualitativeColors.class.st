@@ -11,14 +11,10 @@ Class {
 }
 
 { #category : #'instance creation' }
-ClPQualitativeColors >> buildAWheelUpTo: endingColor [
-
-	| wheel |	
+ClPQualitativeColors >> buildAWheel [
 	
-	wheel := startingColor wheel: 60. "a segment of 180 units(colors)"
-	wheel do: [ :each | 
-		each = endingColor ifTrue: [ ^ wheel copyUpTo: each ]].
-	^ wheel
+	^ startingColor wheel: 50 "a segment of 50 units(colors)"
+	
 		
 ]
 
@@ -38,14 +34,13 @@ ClPQualitativeColors >> makePalette [
 { #category : #'instance creation' }
 ClPQualitativeColors >> qualitative [
 
-	| endingColor wheel colors parts |
+	| wheel colors parts |
 	colors := OrderedCollection new.
-	endingColor := startingColor negated.
-	wheel := self buildAWheelUpTo: endingColor.
+	wheel := self buildAWheel.
 	parts := wheel size // numberOfColors.
 	1 to: wheel size do: [ :i | 
-		(i-1) % parts = 0 ifTrue: [ colors add: (wheel at: i) ] ].
-	^ colors
+		(i-1) % parts = 0  ifTrue: [ colors add: (wheel at: i) ] ].
+	^ colors 
 ]
 
 { #category : #accessing }
