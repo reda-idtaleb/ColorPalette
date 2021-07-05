@@ -15,6 +15,14 @@ Color >> hclToLab: hclColor [
 ]
 
 { #category : #'*ColorPalette' }
+Color >> hclToRgb: hclColor [
+	
+	^ self labToRgb: (self hclToLab: hclColor )
+		
+			
+]
+
+{ #category : #'*ColorPalette' }
 Color >> labToRgb: labColor [
 
 	"labColor is a dictionary representing the L*a*b* color format"
