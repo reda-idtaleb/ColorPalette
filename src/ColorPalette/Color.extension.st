@@ -58,6 +58,16 @@ Color >> labToRgb: labColor [
 ]
 
 { #category : #'*ColorPalette' }
+Color >> rgbToHcl [
+	
+	"rgbToHcl first uses converting from RGB to L*a*b* before converting to HCL"
+	
+	^ self labToHcl: (self rgbToLab)
+		
+			
+]
+
+{ #category : #'*ColorPalette' }
 Color >> rgbToLab [
 	
 	"The CIELAB color space also referred to as L*a*b* is a color space defined by the International Commission on Illumination. More information on https://en.wikipedia.org/wiki/CIELAB_color_space
