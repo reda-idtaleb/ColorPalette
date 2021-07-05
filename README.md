@@ -6,6 +6,6 @@ In order to install this project, on a Pharo 9.0/Moose Suite 9.0 image execute t
 ```Smalltalk
 Metacello new
   baseline: 'ColorPalette';
-  repository: 'https://github.com/reda-idtaleb/ColorPalette/src';
+  repository: 'github://reda-idtaleb/ColorPalette/src';
   load.
 ```
