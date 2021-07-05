@@ -13,6 +13,16 @@ Class {
 	#category : #'ColorPalette-Palettes'
 }
 
+{ #category : #computing }
+ClPGeneratePalettes class >> euclideanDistanceBetween: aColor and: otherColor [
+
+	| redDiff greenDiff blueDiff |
+	redDiff := (aColor red - otherColor red)**2.
+	greenDiff := (aColor green - otherColor green)**2.
+	blueDiff := (aColor blue - otherColor blue)**2.
+	^ (redDiff + greenDiff + blueDiff) 
+]
+
 { #category : #testing }
 ClPGeneratePalettes class >> isAbstract [
 	
