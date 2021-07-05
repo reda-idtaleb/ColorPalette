@@ -58,6 +58,36 @@ Color >> labToRgb: labColor [
 ]
 
 { #category : #'*ColorPalette' }
+Color >> rgbToLab [
+	
+	"The CIELAB color space also referred to as L*a*b* is a color space defined by the International Commission on Illumination. More information on https://en.wikipedia.org/wiki/CIELAB_color_space
+	 Return a dictionary representing the Lab color space
+	 1st key: Luminance of the color(a value between [0, 100]). 
+	 2nd key: the component 'a' which is a value between [-100, 100]
+	 3rd key: the component 'b' which is a value between [-100, 100]	"
+		
+	| lab r g b y x z |
+	lab := Dictionary new.
+	r := self rgbToLrgb: self red.
+	g := self rgbToLrgb: self green.
+	b := self rgbToLrgb: self blue.
+	y := self xyzToLab: ((0.2225045 * r) + (0.7168786 * g) + (0.0606169 * b)) / 1.
+	x := ((r == g) and: (g == b)) 
+		ifTrue: [ y ] 
+		ifFalse: [ self xyzToLab: ((0.4360747 * r) + (0.3850649 * g) + (0.1430804 * b)) / 0.96422 ].
+	z := ((r == g) and: (g == b)) 
+		ifTrue: [ y ] 
+		ifFalse: [ self xyzToLab: ((0.0139322 * r) + (0.0971045 * g) + (0.7141733 * b)) / 0.82521 ].
+	
+	lab 
+		at: #luminance put: 116 * y - 16;
+		at: #a put: 500 * (x - y);
+		at: #b put: 200 * (y - z).
+	^ lab	
+			
+]
+
+{ #category : #'*ColorPalette' }
 Color >> xyzToLab: t [
 
 	| t1 t2 t3 |
