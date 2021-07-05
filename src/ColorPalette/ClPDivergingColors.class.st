@@ -23,6 +23,14 @@ ClPDivergingColors class >> indexOfTheMiddleColor: aNumberOfColors [
 		           ifFalse: [ aNumberOfColors // 2 + 1 ]
 ]
 
+{ #category : #examples }
+ClPDivergingColors class >> paletteRedWhitePink [
+
+	<example>
+	self new generate 
+	
+]
+
 { #category : #accessing }
 ClPDivergingColors >> calculateStepsRGBBetween: startColor and: endColor [
 
