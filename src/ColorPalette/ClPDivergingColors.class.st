@@ -70,7 +70,7 @@ ClPDivergingColors >> initialize [
 	super initialize .
 	startingColor := Color blue .
 	middleColor := Color white.
-	endingColor := Color black.
+	endingColor := Color red.
 ]
 
 { #category : #accessing }
@@ -82,6 +82,13 @@ ClPDivergingColors >> makePalette [
 	stepsRGB2 := self calculateStepsRGBBetween: middleColor and: endingColor. 
 	colors := self createColorsWith: stepsRGB1 and: stepsRGB2 .
 	^ colors
+]
+
+{ #category : #accessing }
+ClPDivergingColors >> s: aStartingColor e: anEndingcolor [
+	
+	startingColor := aStartingColor .
+	endingColor := anEndingcolor 
 ]
 
 { #category : #accessing }
