@@ -15,7 +15,9 @@ Class {
 
 { #category : #computing }
 ClPGeneratePalettes class >> euclideanDistanceBetween: aColor and: otherColor [
-
+	
+	"the formula is sqrt((r₁ - r₂)² + (g₁ - g₂)² + (b₁ - b₂)²)"
+	
 	| redDiff greenDiff blueDiff |
 	redDiff := (aColor red - otherColor red)**2.
 	greenDiff := (aColor green - otherColor green)**2.

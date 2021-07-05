@@ -9,5 +9,5 @@ ClPGeneratePalettesTest >> testEuclideanDistanceBetweenAnd [
 
 	self 
 		assert: (ClPGeneratePalettes euclideanDistanceBetween: Color white and: Color white) 
-		equals: 0
+		equals: 0.
 ]
