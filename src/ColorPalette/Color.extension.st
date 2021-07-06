@@ -66,8 +66,14 @@ Color >> labToRgb: labColor [
 { #category : #'*ColorPalette' }
 Color >> labToXyz: t [
 
-	"t is a number
-	 Algorithm taken from https://github.com/d3/d3-color/blob/main/src/lab.js"
+	"argument t is a number
+	 CIE XYZ is a color space, it is an improvement of the CIE RGB space. CIE XYZ defines colors in accordance with human vision.
+	 * The Y component defines the notion of luminance(range of [0, 100] 0 and 100 denote respectively an absence of luminosity and a complete luminosity).
+	 * The Z component is quasi-equal to blue (of CIE RGB)
+	 * The X compoenent is a mix of the three CIE RGB curves chosen to be nonnegative
+	 Setting Y as luminance has the useful result that for any given Y value, the XZ plane will contain all possible chromaticities at that luminance.
+	 More information on https://en.wikipedia.org/wiki/CIE_1931_color_space
+	 Note: Algorithm taken from https://github.com/d3/d3-color/blob/main/src/lab.js"
 
 	| t1 t2 |
 	t1 := 6 / 29.
@@ -146,7 +152,13 @@ Color >> rgbToLrgb: x [
 { #category : #'*ColorPalette' }
 Color >> xyzToLab: t [
 	
-	"Algorithm taken from https://github.com/d3/d3-color/blob/main/src/lab.js"
+	"CIE XYZ is a color space, it is an improvement of the CIE RGB space. CIE XYZ defines colors in accordance with human vision.
+	 * The Y component defines the notion of luminance(range of [0, 100] 0 and 100 denote respectively an absence of luminosity and a complete luminosity).
+	 * The Z component is quasi-equal to blue (of CIE RGB)
+	 * The X compoenent is a mix of the three CIE RGB curves chosen to be nonnegative
+	 Setting Y as luminance has the useful result that for any given Y value, the XZ plane will contain all possible chromaticities at that luminance.
+	 More information on https://en.wikipedia.org/wiki/CIE_1931_color_space
+	 Algorithm taken from https://github.com/d3/d3-color/blob/main/src/lab.js"
 	
 	| t1 t2 t3 |
 	t1 := 6 / 29.
