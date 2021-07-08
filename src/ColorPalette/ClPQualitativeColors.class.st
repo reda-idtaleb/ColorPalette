@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'startingColor'
 	],
-	#category : #'ColorPalette-Palettes'
+	#category : #'ColorPalette-GeneratePalettes'
 }
 
 { #category : #computing }
@@ -20,14 +20,6 @@ ClPQualitativeColors class >> euclideanDistanceBetween: aColor and: otherColor [
 	greenDiff := (otherColor green - aColor green)**2.
 	blueDiff := (otherColor  blue - aColor blue)**2.
 	^ (redDiff + greenDiff + blueDiff) sqrt
-]
-
-{ #category : #'instance creation' }
-ClPQualitativeColors >> buildAWheel [
-	
-	^ startingColor wheel: 50 "a segment of 50 units(colors)"
-	
-		
 ]
 
 { #category : #initialization }
