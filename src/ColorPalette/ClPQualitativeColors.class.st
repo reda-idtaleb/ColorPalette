@@ -10,6 +10,18 @@ Class {
 	#category : #'ColorPalette-Palettes'
 }
 
+{ #category : #computing }
+ClPQualitativeColors class >> euclideanDistanceBetween: aColor and: otherColor [
+	
+	"the formula is sqrt((r₁ - r₂)² + (g₁ - g₂)² + (b₁ - b₂)²)"
+	
+	| redDiff greenDiff blueDiff |
+	redDiff := (otherColor red - aColor  red)**2.
+	greenDiff := (otherColor green - aColor green)**2.
+	blueDiff := (otherColor  blue - aColor blue)**2.
+	^ (redDiff + greenDiff + blueDiff) sqrt
+]
+
 { #category : #'instance creation' }
 ClPQualitativeColors >> buildAWheel [
 	
