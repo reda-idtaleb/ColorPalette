@@ -80,13 +80,19 @@ ClPQualitativeColors >> makePalette [
 { #category : #'instance creation' }
 ClPQualitativeColors >> qualitative [
 
-	| wheel colors parts |
+	"I create a collection of colors"
+
+	| colors currentColor nextColor |
 	colors := OrderedCollection new.
-	wheel := self buildAWheel.
-	parts := wheel size // numberOfColors.
-	1 to: wheel size do: [ :i | 
-		(i-1) % parts = 0  ifTrue: [ colors add: (wheel at: i) ] ].
-	^ colors 
+	currentColor := startingColor.
+	colors add: currentColor.
+	2 to: numberOfColors do: [ :i | 
+		[ self isValidColor: currentColor fromAll: colors ] whileTrue: [ 
+			nextColor := self generateAValidColorFrom: currentColor.
+			currentColor := nextColor ].
+		colors add: nextColor.
+		currentColor := nextColor ].
+	^ colors
 ]
 
 { #category : #accessing }
