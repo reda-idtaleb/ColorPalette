@@ -55,6 +55,22 @@ ClPQualitativeColors >> initialize [
 	startingColor := Color blue
 ]
 
+{ #category : #testing }
+ClPQualitativeColors >> isValidColor: aColor fromAll: collectionOfColors [
+	
+	"two colors are very similar if their distance is less than 0.1"
+	
+	^ collectionOfColors anySatisfy: [ :each | (each diff: aColor) < 0.1 ]
+]
+
+{ #category : #testing }
+ClPQualitativeColors >> isValidColorBetween: originalColor and: chosenColor [
+
+	"a valid color chosenColor is valid when it's different from the originalColor"
+	
+	^ (chosenColor diff: originalColor) >= 0.2
+]
+
 { #category : #accessing }
 ClPQualitativeColors >> makePalette [
 
