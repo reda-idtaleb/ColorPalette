@@ -22,6 +22,18 @@ ClPQualitativeColors class >> euclideanDistanceBetween: aColor and: otherColor [
 	^ (redDiff + greenDiff + blueDiff) sqrt
 ]
 
+{ #category : #'as yet unclassified' }
+ClPQualitativeColors >> generateAValidColorFrom: currentColor [
+
+	"generate a different color from the currentColor"
+
+	| nextColor |
+	nextColor := self generateRandomColorFrom: startingColor.
+	[self isValidColorBetween: currentColor and: nextColor] whileFalse: [ 
+		nextColor := self generateRandomColorFrom: startingColor ].
+	^ nextColor
+]
+
 { #category : #initialization }
 ClPQualitativeColors >> initialize [ 
 
