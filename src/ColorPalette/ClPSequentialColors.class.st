@@ -10,7 +10,7 @@ Class {
 		'startingColor',
 		'endingColor'
 	],
-	#category : #'ColorPalette-Palettes'
+	#category : #'ColorPalette-GeneratePalettes'
 }
 
 { #category : #accessing }

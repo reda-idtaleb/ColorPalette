@@ -10,7 +10,7 @@ Class {
 	#instVars : [
 		'numberOfColors'
 	],
-	#category : #'ColorPalette-Palettes'
+	#category : #'ColorPalette-GeneratePalettes'
 }
 
 { #category : #computing }
