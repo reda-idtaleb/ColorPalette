@@ -10,20 +10,8 @@ Class {
 	#instVars : [
 		'numberOfColors'
 	],
-	#category : #'ColorPalette-Palettes'
+	#category : #'ColorPalette-GeneratePalettes'
 }
-
-{ #category : #computing }
-ClPGeneratePalettes class >> euclideanDistanceBetween: aColor and: otherColor [
-	
-	"the formula is sqrt((r₁ - r₂)² + (g₁ - g₂)² + (b₁ - b₂)²)"
-	
-	| redDiff greenDiff blueDiff |
-	redDiff := (aColor red - otherColor red)**2.
-	greenDiff := (aColor green - otherColor green)**2.
-	blueDiff := (aColor blue - otherColor blue)**2.
-	^ (redDiff + greenDiff + blueDiff) 
-]
 
 { #category : #testing }
 ClPGeneratePalettes class >> isAbstract [
@@ -35,6 +23,7 @@ ClPGeneratePalettes class >> isAbstract [
 ClPGeneratePalettes >> generate [ 
 
 	GTInspector inspect: self makePalette
+	
 ]
 
 { #category : #'gt-inspection' }
@@ -43,7 +32,7 @@ ClPGeneratePalettes >> gtInspectorColorsIn: composite [
 	
 	^ composite fastTable
 		title: 'Colors';
-		display: [ self makePalette ];
+		display: [ self makePalette  ];
 		beMultiple;
 		enableElementIndex;
 		wantsAutomaticRefresh: true;

@@ -11,7 +11,7 @@ Class {
 		'middleColor',
 		'endingColor'
 	],
-	#category : #'ColorPalette-Palettes'
+	#category : #'ColorPalette-GeneratePalettes'
 }
 
 { #category : #accessing }
