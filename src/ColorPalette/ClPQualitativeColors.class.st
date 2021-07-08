@@ -34,6 +34,20 @@ ClPQualitativeColors >> generateAValidColorFrom: currentColor [
 	^ nextColor
 ]
 
+{ #category : #'instance creation' }
+ClPQualitativeColors >> generateRandomColorFrom: aColor [
+
+	| red green blue |
+	red := Random new nextBetween: 0 and: 255 .
+	green := Random new nextBetween: 0 and: 255 .
+	blue := Random new nextBetween: 0 and: 255 .
+	
+	red := (red + startingColor red)/2.
+	green := (green + startingColor green)/2.
+	blue := (blue + startingColor blue)/2.
+	^  Color r: red g: green b: blue
+]
+
 { #category : #initialization }
 ClPQualitativeColors >> initialize [ 
 
