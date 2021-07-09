@@ -1,7 +1,7 @@
 "
 I am a color palette. I am represented by a collection of colors in which you can access colors.
 
-**Examples to select a color:**
+**Examples to select a color by it's index:**
 ```Smalltalk
 p := Palette defaultColors.
 p color: 1
@@ -15,9 +15,19 @@ p color: -1 	""the last color is returned""
 **Examples to move between colors:**
 ```Smalltalk
 p := Palette defaultColors.
-p nextColor
+p currentColor ""by default returns the first color in the list of colors in the palette"" 
+```
+You can get the next color:
+```Smalltalk
+p := Palette defaultColors.
+p nextColor ""return the next color of the current color""
 ```
 
+You can also get the previous color:
+```Smalltalk
+p := Palette defaultColors.
+p prevColor ""return the previous color of the current color""
+```
 If you have chosen a color, so the current color is the selected color
 ```Smalltalk
 p := Palette defaultColors.
