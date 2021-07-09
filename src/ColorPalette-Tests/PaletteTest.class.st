@@ -45,3 +45,43 @@ PaletteTest >> testColor [
 
 	
 ]
+
+{ #category : #tests }
+PaletteTest >> testCurrentColor [
+	
+	| colorSelected |
+	self createColors.
+	self assert: palette currentColor equals: Color white .
+	colorSelected := palette color: 2.
+	self assert: palette currentColor equals: colorSelected  
+]
+
+{ #category : #tests }
+PaletteTest >> testNextColor [
+	
+	| colorSelected |
+	self createColors. 
+	self assert: palette currentColor equals: Color white .
+	self assert: palette nextColor equals: Color black.
+	
+	colorSelected := palette color: 2.
+	self assert: palette currentColor equals: colorSelected .
+	self assert: palette nextColor equals: (palette third).
+	
+	colorSelected := palette last.
+	self assert: palette currentColor equals: colorSelected .
+	self assert: palette nextColor equals: (palette first) 
+]
+
+{ #category : #tests }
+PaletteTest >> testPrevColor [
+	
+	| colorSelected |
+	self createColors. 
+	self assert: palette currentColor equals: (palette first) .
+	self assert: palette prevColor equals: (palette last).
+	
+	colorSelected := palette color: 2.
+	self assert: palette currentColor equals: (palette second) .
+	self assert: palette prevColor equals: (palette first)
+]
