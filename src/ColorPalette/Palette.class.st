@@ -51,6 +51,15 @@ Palette >> colors [
 	^ colors
 ]
 
+{ #category : #accessing }
+Palette >> currentColor [
+	
+	"get the current color"
+
+	^ self color: currentShift . 
+	
+]
+
 { #category : #initialization }
 Palette >> initialize [ 
 
@@ -59,4 +68,28 @@ Palette >> initialize [
 	nextShift  := 1.
 	previousShift := 1.
 	currentShift := 1
+]
+
+{ #category : #accessing }
+Palette >> nextColor [
+	
+	"get the next color of the current color(use #currentColor) in the list of colors. If the current color is the last color, then the next color is the first color in the color list."
+	
+	| color |
+	nextShift := currentShift + 1.
+	nextShift > (colors size) ifTrue: [ nextShift := 1 ].
+	color := self color: nextShift. 
+	^ color
+]
+
+{ #category : #accessing }
+Palette >> prevColor [
+	
+	"get the previous color of the current color(use #currentColor) in the list of colors"
+	
+	| color |
+	previousShift := currentShift - 1.
+	previousShift < 1 ifTrue: [ previousShift := colors size ].
+	color := self color: previousShift. 
+	^ color
 ]
