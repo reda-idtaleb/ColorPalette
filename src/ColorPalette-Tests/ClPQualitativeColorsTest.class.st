@@ -1,7 +1,7 @@
 Class {
 	#name : #ClPQualitativeColorsTest,
 	#superclass : #TestCase,
-	#category : #'ColorPalette-Tests'
+	#category : #'ColorPalette-Tests-GeneratePalettes-Test'
 }
 
 { #category : #tests }
