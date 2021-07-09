@@ -36,6 +36,16 @@ Palette >> add: aColor [
 ]
 
 { #category : #accessing }
+Palette >> color: index [
+	
+	"get a color specefied by its index. If the index is negative then indexing starts from the tail of the collection."
+	
+	index < 0 ifTrue: [ ^ colors at: index % (colors size + 1) ].
+	currentShift := index.
+	^ colors at: index
+]
+
+{ #category : #accessing }
 Palette >> colors [
 
 	^ colors
