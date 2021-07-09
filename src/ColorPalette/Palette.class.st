@@ -60,6 +60,12 @@ Palette >> currentColor [
 	
 ]
 
+{ #category : #accessing }
+Palette >> first [ 
+	
+	^ self color: 1
+]
+
 { #category : #initialization }
 Palette >> initialize [ 
 
@@ -68,6 +74,12 @@ Palette >> initialize [
 	nextShift  := 1.
 	previousShift := 1.
 	currentShift := 1
+]
+
+{ #category : #accessing }
+Palette >> last [
+	
+	^ self color: colors size
 ]
 
 { #category : #accessing }
@@ -92,4 +104,16 @@ Palette >> prevColor [
 	previousShift < 1 ifTrue: [ previousShift := colors size ].
 	color := self color: previousShift. 
 	^ color
+]
+
+{ #category : #accessing }
+Palette >> second [ 
+	
+	^ self color: 2
+]
+
+{ #category : #accessing }
+Palette >> third [
+	
+	^ self color: 3
 ]
