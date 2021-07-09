@@ -11,15 +11,44 @@ p color: 1
 p := Palette defaultColors.
 p color: -1 	""the last color is returned""
 ```
+
+**Examples to move between colors:**
+```Smalltalk
+p := Palette defaultColors.
+p nextColor
+```
+
+If you have chosen a color, so the current color is the selected color
+```Smalltalk
+p := Palette defaultColors.
+p color: 3. ""select the third color""
+p currentColor. ""return the 3rd color""
+p nextColor ""return the 4th color"" 
+```
+
+```Smalltalk
+p := Palette defaultColors.
+p color: 3.
+p currentColor. ""return the 3rd color""
+p prevColor ""return the 2nd color""
+```
+
+
+**Get the collection of colors of the palette**
+```Smalltalk
+p := Palette defaultColors.
+p colors
+```
+
 "
 Class {
 	#name : #Palette,
 	#superclass : #Object,
 	#instVars : [
 		'colors',
+		'currentShift',
 		'nextShift',
-		'previousShift',
-		'currentShift'
+		'previousShift'
 	],
 	#category : #'ColorPalette-Palette'
 }
@@ -81,7 +110,7 @@ Palette >> colors [
 { #category : #accessing }
 Palette >> currentColor [
 	
-	"get the current color"
+	"get the current color in the list of the colors"
 
 	^ self color: currentShift . 
 	
@@ -98,8 +127,6 @@ Palette >> initialize [
 
 	super initialize .
 	colors := OrderedCollection new.
-	nextShift  := 1.
-	previousShift := 1.
 	currentShift := 1
 ]
 
