@@ -24,6 +24,17 @@ Class {
 	#category : #'ColorPalette-Palette'
 }
 
+{ #category : #adding }
+Palette >> add: aColor [
+	
+	"add only a valid color to the collection"
+	
+	aColor isColor 
+		ifTrue: [ colors add: aColor]
+		ifFalse: [ ^ Error signal: 'The element added is not a valid Color' ]
+							
+]
+
 { #category : #accessing }
 Palette >> colors [
 
