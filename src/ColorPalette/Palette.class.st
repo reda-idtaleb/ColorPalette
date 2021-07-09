@@ -24,6 +24,33 @@ Class {
 	#category : #'ColorPalette-Palette'
 }
 
+{ #category : #colors }
+Palette class >> defaultColors [
+	
+	| palette |
+	palette := self new 
+		add: (Color fromString: '#4572a7');
+		add: (Color fromString: '#c0504d');
+		add: (Color fromString: '#9bbb28'); 
+		add: (Color fromString: '#8064a2'); 
+		add: (Color fromString: '#4bacc6');  
+		add: (Color fromString: '#f79646');
+		add: (Color fromString: '#fdd600');
+		add: (Color fromString: '#2185ff');
+		add: (Color fromString: '#ce3b37');
+		add: (Color fromString: '#6bbd46');
+		add: (Color fromString: '#834ec5');
+		add: (Color fromString: '#21c1ed');
+		add: (Color fromString: '#fa6d10');
+		add: (Color fromString: '#fff114');
+		add: (Color fromString: '#9db3d9');
+		add: (Color fromString: '#db9d9d');
+		add: (Color fromString: '#c2d7a1');
+		add: (Color fromString: '#b4a7c8').
+	^ palette
+	
+]
+
 { #category : #adding }
 Palette >> add: aColor [
 	
