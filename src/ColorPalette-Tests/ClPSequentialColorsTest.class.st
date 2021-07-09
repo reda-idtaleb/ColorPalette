@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'sequentialPalette'
 	],
-	#category : #'ColorPalette-Tests'
+	#category : #'ColorPalette-Tests-GeneratePalettes-Test'
 }
 
 { #category : #running }
