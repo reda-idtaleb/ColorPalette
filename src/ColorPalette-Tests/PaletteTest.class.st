@@ -74,14 +74,14 @@ PaletteTest >> testNextColor [
 ]
 
 { #category : #tests }
-PaletteTest >> testPrevColor [
+PaletteTest >> testPreviousColor [
 	
 	| colorSelected |
 	self createColors. 
-	self assert: palette currentColor equals: (palette first) .
-	self assert: palette prevColor equals: (palette last).
+	self assert: palette currentColor equals: palette first .
+	self assert: palette previousColor equals: palette last.
 	
-	colorSelected := palette color: 2.
-	self assert: palette currentColor equals: (palette second) .
-	self assert: palette prevColor equals: (palette first)
+	colorSelected := palette colorAt: 2.
+	self assert: palette currentColor equals: palette second .
+	self assert: palette previousColor equals: palette first
 ]

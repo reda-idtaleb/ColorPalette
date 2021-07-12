@@ -157,14 +157,14 @@ Palette >> nextColor [
 ]
 
 { #category : #accessing }
-Palette >> prevColor [
+Palette >> previousColor [
 	
 	"get the previous color of the current color(use #currentColor) in the list of colors"
 	
-	| color |
+	| color previousShift |
 	previousShift := currentShift - 1.
-	previousShift < 1 ifTrue: [ previousShift := colors size ].
-	color := self color: previousShift. 
+	previousShift < 1 ifTrue: [ previousShift := allColors size ].
+	color := self colorAt: previousShift. 
 	^ color
 ]
 
