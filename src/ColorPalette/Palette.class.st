@@ -94,7 +94,7 @@ Palette >> add: aColor [
 	"add only a valid color to the collection"
 	
 	aColor isColor 
-		ifTrue: [ colors add: aColor]
+		ifTrue: [ allColors add: aColor]
 		ifFalse: [ ^ Error signal: 'The element added is not a valid Color' ]
 							
 ]
@@ -120,28 +120,28 @@ Palette >> currentColor [
 	
 	"get the current color in the list of the colors"
 
-	^ self color: currentShift . 
+	^ self colorAt: currentShift . 
 	
 ]
 
 { #category : #accessing }
 Palette >> first [ 
 	
-	^ self color: 1
+	^ self colorAt: 1
 ]
 
 { #category : #initialization }
 Palette >> initialize [ 
 
 	super initialize .
-	colors := OrderedCollection new.
+	allColors := OrderedCollection new.
 	currentShift := 1
 ]
 
 { #category : #accessing }
 Palette >> last [
 	
-	^ self color: colors size
+	^ self colorAt: allColors size
 ]
 
 { #category : #accessing }
@@ -149,10 +149,10 @@ Palette >> nextColor [
 	
 	"get the next color of the current color(use #currentColor) in the list of colors. If the current color is the last color, then the next color is the first color in the color list."
 	
-	| color |
+	| color nextShift |
 	nextShift := currentShift + 1.
-	nextShift > (colors size) ifTrue: [ nextShift := 1 ].
-	color := self color: nextShift. 
+	nextShift > (allColors size) ifTrue: [ nextShift := 1 ].
+	color := self colorAt: nextShift. 
 	^ color
 ]
 
@@ -171,11 +171,11 @@ Palette >> previousColor [
 { #category : #accessing }
 Palette >> second [ 
 	
-	^ self color: 2
+	^ self colorAt: 2
 ]
 
 { #category : #accessing }
 Palette >> third [
 	
-	^ self color: 3
+	^ self colorAt: 3
 ]

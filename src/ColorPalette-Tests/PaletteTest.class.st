@@ -30,7 +30,9 @@ PaletteTest >> testAdd [
 	palette add: Color white.
 	self assert: palette first equals: Color white.
 	palette add: Color black.
-	self assert: palette last equals: Color black 
+	self assert: palette last equals: Color black .
+	
+	self should: [palette add: 'notAColor'] raise: Error
 	
 ]
 
@@ -49,28 +51,28 @@ PaletteTest >> testColorAt [
 { #category : #tests }
 PaletteTest >> testCurrentColor [
 	
-	| colorSelected |
+	| aChosenColor |
 	self createColors.
-	self assert: palette currentColor equals: Color white .
-	colorSelected := palette color: 2.
-	self assert: palette currentColor equals: colorSelected  
+	self assert: palette currentColor equals: palette first .
+	aChosenColor := palette colorAt: 2.
+	self assert: palette currentColor equals: aChosenColor  
 ]
 
 { #category : #tests }
 PaletteTest >> testNextColor [
 	
-	| colorSelected |
+	| aChosenColor |
 	self createColors. 
-	self assert: palette currentColor equals: Color white .
-	self assert: palette nextColor equals: Color black.
+	self assert: palette currentColor equals: palette first .
+	self assert: palette nextColor equals: palette second.
 	
-	colorSelected := palette color: 2.
-	self assert: palette currentColor equals: colorSelected .
-	self assert: palette nextColor equals: (palette third).
+	aChosenColor := palette colorAt: 2.
+	self assert: palette currentColor equals: aChosenColor .
+	self assert: palette nextColor equals: palette third.
 	
-	colorSelected := palette last.
-	self assert: palette currentColor equals: colorSelected .
-	self assert: palette nextColor equals: (palette first) 
+	aChosenColor := palette last.
+	self assert: palette currentColor equals: aChosenColor .
+	self assert: palette nextColor equals: palette first 
 ]
 
 { #category : #tests }
