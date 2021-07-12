@@ -35,13 +35,13 @@ PaletteTest >> testAdd [
 ]
 
 { #category : #tests }
-PaletteTest >> testColor [
+PaletteTest >> testColorAt [
 	
 	self createColors .
-	self assert:  (palette color: 1) equals: Color white.
-	self assert:  (palette color: 2) equals: Color black.
-	self assert:  (palette color: -1) equals: Color red.
-	self assert:  (palette color: -2) equals: Color black.
+	self assert:  (palette colorAt: 1) equals: Color white.
+	self assert:  (palette colorAt: 2) equals: Color black.
+	self assert:  (palette colorAt: -1) equals: Color red.
+	self assert:  (palette colorAt: -2) equals: Color black.
 
 	
 ]

@@ -4,50 +4,50 @@ I am a color palette. I am represented by a collection of colors in which you ca
 **Examples to select a color by it's index:**
 ```Smalltalk
 p := Palette defaultColors.
-p color: 1
+p colorAt: 1
 ```
 
 ```Smalltalk
 p := Palette defaultColors.
-p color: -1 	""the last color is returned""
+p colorAt: -1 	""the last color is returned""
 ```
 
 **Examples to move between colors:**
 ```Smalltalk
-p := Palette defaultColors.
+p := Palette example24Colors.
 p currentColor ""by default returns the first color in the list of colors in the palette"" 
 ```
 You can get the next color:
 ```Smalltalk
-p := Palette defaultColors.
+p := Palette example24Colors.
 p nextColor ""return the next color of the current color""
 ```
 
 You can also get the previous color:
 ```Smalltalk
-p := Palette defaultColors.
-p prevColor ""return the previous color of the current color""
+p := Palette example24Colors.
+p previousColor ""return the previous color of the current color""
 ```
 If you have chosen a color, so the current color is the selected color
 ```Smalltalk
-p := Palette defaultColors.
-p color: 3. ""select the third color""
+p := Palette example24Colors.
+p colorAt: 3. ""the 3rd color is chosen""
 p currentColor. ""return the 3rd color""
 p nextColor ""return the 4th color"" 
 ```
 
 ```Smalltalk
-p := Palette defaultColors.
-p color: 3.
+p := Palette example24Colors.
+p colorAt: 3.
 p currentColor. ""return the 3rd color""
-p prevColor ""return the 2nd color""
+p previousColor ""return the 2nd color""
 ```
 
 
 **Get the collection of colors of the palette**
 ```Smalltalk
-p := Palette defaultColors.
-p colors
+p := Palette example24Colors.
+p allColors
 ```
 
 "
@@ -55,10 +55,8 @@ Class {
 	#name : #Palette,
 	#superclass : #Object,
 	#instVars : [
-		'colors',
 		'currentShift',
-		'nextShift',
-		'previousShift'
+		'allColors'
 	],
 	#category : #'ColorPalette-Palette'
 }
@@ -102,19 +100,19 @@ Palette >> add: aColor [
 ]
 
 { #category : #accessing }
-Palette >> color: index [
-	
-	"get a color specefied by its index. If the index is negative then indexing starts from the tail of the collection."
-	
-	index < 0 ifTrue: [ ^ colors at: index % (colors size + 1) ].
-	currentShift := index.
-	^ colors at: index
+Palette >> allColors [
+
+	^ allColors
 ]
 
 { #category : #accessing }
-Palette >> colors [
+Palette >> colorAt: index [
 
-	^ colors
+	"get a color specefied by its index. If the index is negative then indexing starts from the tail of the collection."
+	
+	index < 0 ifTrue: [ ^ allColors at: index % (allColors size + 1) ].
+	currentShift := index.
+	^ allColors at: index
 ]
 
 { #category : #accessing }
