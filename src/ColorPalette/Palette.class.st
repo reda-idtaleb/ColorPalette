@@ -62,7 +62,7 @@ Class {
 }
 
 { #category : #colors }
-Palette class >> defaultColors [
+Palette class >> example24Colors [
 	
 	| palette |
 	palette := self new 
@@ -83,7 +83,13 @@ Palette class >> defaultColors [
 		add: (Color fromString: '#9db3d9');
 		add: (Color fromString: '#db9d9d');
 		add: (Color fromString: '#c2d7a1');
-		add: (Color fromString: '#b4a7c8').
+		add: (Color fromString: '#b4a7c8');
+		add: (Color fromString: '#9dd9d4');
+		add: (Color fromString: '#d9b99d');
+		add: (Color fromString: '#d9d19d');
+		add: (Color fromString: '#ffffff');
+		add: (Color fromString: '#000000');
+		add: (Color fromString: '#9c9c9c').
 	^ palette
 	
 ]
