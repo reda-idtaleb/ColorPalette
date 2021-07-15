@@ -37,6 +37,17 @@ PaletteTest >> testAdd [
 ]
 
 { #category : #tests }
+PaletteTest >> testAddAll [
+
+	palette addAll: { Color white. Color red }.
+	self assert: palette allColors size equals: 2.
+	self assert: palette first equals: Color white.
+	self assert: palette last equals: Color red.
+
+	self should: [ palette addAll: { 'notAColor' } ] raise: Error
+]
+
+{ #category : #tests }
 PaletteTest >> testColorAt [
 	
 	self createColors .

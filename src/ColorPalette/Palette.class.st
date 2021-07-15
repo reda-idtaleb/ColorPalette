@@ -110,7 +110,7 @@ Palette >> addAll: aCollectionOfColors [
 
 	"add a collection of colors"
 
-	(self checkAllItemsAreColors: aCollectionOfColors)
+	(self checkAllElementsAreColors: aCollectionOfColors)
 		ifTrue: (allColors addAll: aCollectionOfColors)
 		ifFalse: [ ^ Error signal: 'Not all elements are instance of Color' ]
 ]
@@ -119,6 +119,15 @@ Palette >> addAll: aCollectionOfColors [
 Palette >> allColors [
 
 	^ allColors
+]
+
+{ #category : #private }
+Palette >> checkAllElementsAreColors: aCollectionOfColors [
+	
+	"check if all the elements of the collection are an instance of Color"
+	
+	^ aCollectionOfColors allSatisfy: [ :each | each isColor ]
+							
 ]
 
 { #category : #accessing }
