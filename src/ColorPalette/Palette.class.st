@@ -134,9 +134,9 @@ Palette >> checkAllElementsAreColors: aCollectionOfColors [
 Palette >> colorAt: index [
 
 	"get a color specefied by its index. If the index is negative then indexing starts from the tail of the collection."
-	
+
 	index < 0 ifTrue: [ ^ allColors at: index % (allColors size + 1) ].
-	currentShift := index.
+	self updateCurrentColor: index.
 	^ allColors at: index
 ]
 
@@ -203,4 +203,10 @@ Palette >> second [
 Palette >> third [
 	
 	^ self colorAt: 3
+]
+
+{ #category : #private }
+Palette >> updateCurrentColor: index [
+
+	currentShift := index
 ]
