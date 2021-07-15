@@ -105,6 +105,16 @@ Palette >> add: aColor [
 							
 ]
 
+{ #category : #adding }
+Palette >> addAll: aCollectionOfColors [
+
+	"add a collection of colors"
+
+	(self checkAllItemsAreColors: aCollectionOfColors)
+		ifTrue: (allColors addAll: aCollectionOfColors)
+		ifFalse: [ ^ Error signal: 'Not all elements are instance of Color' ]
+]
+
 { #category : #accessing }
 Palette >> allColors [
 
