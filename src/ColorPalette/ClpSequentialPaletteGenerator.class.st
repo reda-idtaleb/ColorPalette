@@ -4,8 +4,8 @@ I am a generator of sequential palette. I take 2 different colors and i can make
 More details and examples are coming ...
 "
 Class {
-	#name : #ClPSequentialColors,
-	#superclass : #ClPGeneratePalettes,
+	#name : #ClpSequentialPaletteGenerator,
+	#superclass : #ClpPaletteGenerator,
 	#instVars : [
 		'startingColor',
 		'endingColor'
@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : #accessing }
-ClPSequentialColors >> calculateStepsRGBBetween: startColor and: endColor [
+ClpSequentialPaletteGenerator >> calculateStepsRGBBetween: startColor and: endColor [
 
 	| collection stepR stepG stepB |
 
@@ -31,7 +31,7 @@ ClPSequentialColors >> calculateStepsRGBBetween: startColor and: endColor [
 ]
 
 { #category : #private }
-ClPSequentialColors >> generateColorsStartWith: aStartingColor respecting: stepsRGB [
+ClpSequentialPaletteGenerator >> generateColorsStartWith: aStartingColor respecting: stepsRGB [
 	
 	| colors |
 	colors := OrderedCollection new.
@@ -47,7 +47,7 @@ ClPSequentialColors >> generateColorsStartWith: aStartingColor respecting: steps
 ]
 
 { #category : #accessing }
-ClPSequentialColors >> gradient [
+ClpSequentialPaletteGenerator >> gradient [
 
 	| stepsRGB |
 	stepsRGB := self
@@ -57,7 +57,7 @@ ClPSequentialColors >> gradient [
 ]
 
 { #category : #initialization }
-ClPSequentialColors >> initialize [ 
+ClpSequentialPaletteGenerator >> initialize [ 
 
 	super initialize.
 	startingColor := Color white.
@@ -65,9 +65,9 @@ ClPSequentialColors >> initialize [
 ]
 
 { #category : #accessing }
-ClPSequentialColors >> makePalette [
+ClpSequentialPaletteGenerator >> makeColors [
 	 
-	^ self gradient.
+	^ self gradient
 
 	
 
@@ -75,7 +75,7 @@ ClPSequentialColors >> makePalette [
 ]
 
 { #category : #accessing }
-ClPSequentialColors >> startColor: aStartingColor endColor: anEndingColor [ 
+ClpSequentialPaletteGenerator >> startColor: aStartingColor endColor: anEndingColor [ 
 
 	startingColor := aStartingColor .
 	endingColor := anEndingColor .
