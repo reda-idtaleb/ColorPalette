@@ -110,9 +110,9 @@ Palette >> addAll: aCollectionOfColors [
 
 	"add a collection of colors"
 
-	(self checkAllElementsAreColors: aCollectionOfColors)
-		ifTrue: (allColors addAll: aCollectionOfColors)
-		ifFalse: [ ^ Error signal: 'Not all elements are instance of Color' ]
+	^ (self checkAllElementsAreColors: aCollectionOfColors)
+		ifTrue: [ allColors addAll: aCollectionOfColors ]
+		ifFalse: [ Error signal: 'Not all elements are instance of Color' ]
 ]
 
 { #category : #accessing }
