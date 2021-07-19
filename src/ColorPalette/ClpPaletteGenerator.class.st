@@ -28,10 +28,7 @@ ClpPaletteGenerator class >> isAbstract [
 { #category : #generating }
 ClpPaletteGenerator >> generate [ 
 
-	| palette |
-	palette := Palette new .
-	palette addAll: self makeColors .
-	^ palette
+	^ self generate: numberOfColors 
 	 
 ]
 
