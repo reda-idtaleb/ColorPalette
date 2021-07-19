@@ -13,6 +13,12 @@ Class {
 	#category : #'ColorPalette-GeneratePalettes'
 }
 
+{ #category : #translating }
+ClpPaletteGenerator class >> generate: aNumberOfColors [
+
+	^ self new generate: aNumberOfColors 
+]
+
 { #category : #testing }
 ClpPaletteGenerator class >> isAbstract [
 	
@@ -27,6 +33,18 @@ ClpPaletteGenerator >> generate [
 	palette addAll: self makeColors .
 	^ palette
 	 
+]
+
+{ #category : #translating }
+ClpPaletteGenerator >> generate: aNumberOfColors [
+	
+	"return an object of palette with the specified number of colors"
+	| palette |
+	numberOfColors := aNumberOfColors .
+	palette := Palette new .
+	palette addAll: self makeColors .
+	^ palette
+	
 ]
 
 { #category : #'gt-inspection' }
