@@ -105,19 +105,38 @@ Palette >> add: aColor [
 							
 ]
 
+{ #category : #adding }
+Palette >> addAll: aCollectionOfColors [
+
+	"add a collection of colors"
+
+	^ (self checkAllElementsAreColors: aCollectionOfColors)
+		ifTrue: [ allColors addAll: aCollectionOfColors ]
+		ifFalse: [ Error signal: 'Not all elements are instance of Color' ]
+]
+
 { #category : #accessing }
 Palette >> allColors [
 
 	^ allColors
 ]
 
+{ #category : #private }
+Palette >> checkAllElementsAreColors: aCollectionOfColors [
+	
+	"check if all the elements of the collection are an instance of Color"
+	
+	^ aCollectionOfColors allSatisfy: [ :each | each isColor ]
+							
+]
+
 { #category : #accessing }
 Palette >> colorAt: index [
 
 	"get a color specefied by its index. If the index is negative then indexing starts from the tail of the collection."
-	
+
 	index < 0 ifTrue: [ ^ allColors at: index % (allColors size + 1) ].
-	currentShift := index.
+	self updateCurrentColor: index.
 	^ allColors at: index
 ]
 
@@ -184,4 +203,10 @@ Palette >> second [
 Palette >> third [
 	
 	^ self colorAt: 3
+]
+
+{ #category : #private }
+Palette >> updateCurrentColor: index [
+
+	currentShift := index
 ]
