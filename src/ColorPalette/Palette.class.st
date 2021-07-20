@@ -3,12 +3,12 @@ I am a color palette. I am represented by a collection of colors in which you ca
 
 **Examples to select a color by it's index:**
 ```Smalltalk
-p := Palette defaultColors.
+p := Palette example24Colors.
 p colorAt: 1
 ```
 
 ```Smalltalk
-p := Palette defaultColors.
+p := Palette example24Colors.
 p colorAt: -1 	""the last color is returned""
 ```
 
@@ -33,17 +33,21 @@ If you have chosen a color, so the current color is the selected color
 p := Palette example24Colors.
 p colorAt: 3. ""the 3rd color is chosen""
 p currentColor. ""return the 3rd color""
-p nextColor ""return the 4th color"" 
+p nextColor. ""return the 4th color"" 
+p currentColor ""return the 4th color""
 ```
 
+**Add as many colors as you want:**
 ```Smalltalk
-p := Palette example24Colors.
-p colorAt: 3.
-p currentColor. ""return the 3rd color""
-p previousColor ""return the 2nd color""
+p := Palette new .
+p add: Color red;
+  add: Color lightBlue
 ```
-
-
+**Or, adding a collection of colors:**
+```Smalltalk
+p := Palette new .
+p addAll: { Color red. Color blue. Color green }
+```
 **Get the collection of colors of the palette**
 ```Smalltalk
 p := Palette example24Colors.
