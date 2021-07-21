@@ -180,6 +180,22 @@ Palette >> last [
 	^ self colorAt: allColors size
 ]
 
+{ #category : #'palette-variant' }
+Palette >> lighterPalette [
+	
+	"returns the same palette but containing darker colors"
+	
+	| lighterColors |
+	lighterColors := allColors collect: [ :c | 
+		                 c saturation >= 0.4
+			                 ifTrue: [ c adjustSaturation: -0.4 brightness: 0.08 ]
+			                 ifFalse: [ c adjustSaturation: -0.08 brightness: 0.08 ] ].
+	self allColors reset.
+	^ self
+		  addAll: lighterColors;
+		  yourself
+]
+
 { #category : #accessing }
 Palette >> nextColor [
 	
