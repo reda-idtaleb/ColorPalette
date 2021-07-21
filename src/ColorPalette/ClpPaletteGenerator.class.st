@@ -1,8 +1,10 @@
 "
 I am a generator of palettes. 
-Note: The number of colors to generate must be specified
+Note: The number of colors to generate must be specified, the default value is 20
 
-More details and examples are coming ...
+To generate a palette use the common method #generate:
+
+
 "
 Class {
 	#name : #ClpPaletteGenerator,
