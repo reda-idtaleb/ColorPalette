@@ -3,13 +3,8 @@ I am a color palette. I am represented by a collection of colors in which you ca
 
 **Examples to select a color by it's index:**
 ```Smalltalk
-p := Palette defaultColors.
+p := Palette example24Colors.
 p colorAt: 1
-```
-
-```Smalltalk
-p := Palette defaultColors.
-p colorAt: -1 	""the last color is returned""
 ```
 
 **Examples to move between colors:**
@@ -33,17 +28,21 @@ If you have chosen a color, so the current color is the selected color
 p := Palette example24Colors.
 p colorAt: 3. ""the 3rd color is chosen""
 p currentColor. ""return the 3rd color""
-p nextColor ""return the 4th color"" 
+p nextColor. ""return the 4th color"" 
+p currentColor ""return the 4th color""
 ```
 
+**Add as many colors as you want:**
 ```Smalltalk
-p := Palette example24Colors.
-p colorAt: 3.
-p currentColor. ""return the 3rd color""
-p previousColor ""return the 2nd color""
+p := Palette new .
+p add: Color red;
+  add: Color lightBlue
 ```
-
-
+**Or, adding a collection of colors:**
+```Smalltalk
+p := Palette new .
+p addAll: { Color red. Color blue. Color green }
+```
 **Get the collection of colors of the palette**
 ```Smalltalk
 p := Palette example24Colors.
@@ -97,7 +96,7 @@ Palette class >> example24Colors [
 { #category : #adding }
 Palette >> add: aColor [
 	
-	"add only a valid color to the collection"
+	"add a Color to the collection. only an instance of Color is allowed"
 	
 	aColor isColor 
 		ifTrue: [ allColors add: aColor]
@@ -124,18 +123,17 @@ Palette >> allColors [
 { #category : #private }
 Palette >> checkAllElementsAreColors: aCollectionOfColors [
 	
-	"check if all the elements of the collection are an instance of Color"
+	"private. check if all the elements of the collection are an instance of Color"
 	
 	^ aCollectionOfColors allSatisfy: [ :each | each isColor ]
 							
 ]
 
-{ #category : #accessing }
+{ #category : #'color manipulation' }
 Palette >> colorAt: index [
 
 	"get a color specefied by its index. If the index is negative then indexing starts from the tail of the collection."
 
-	index < 0 ifTrue: [ ^ allColors at: index % (allColors size + 1) ].
 	self updateCurrentColor: index.
 	^ allColors at: index
 ]
@@ -147,6 +145,19 @@ Palette >> currentColor [
 
 	^ self colorAt: currentShift . 
 	
+]
+
+{ #category : #'palette-variant' }
+Palette >> darkerPalette [
+	
+	"returns the same palette but containing darker colors"
+	
+	| darkerColors |
+	darkerColors := allColors collect: [ :c |  c adjustBrightness: -0.3 ].
+	self allColors reset.
+	^ self 
+		addAll: darkerColors;
+		yourself
 ]
 
 { #category : #accessing }
@@ -167,6 +178,22 @@ Palette >> initialize [
 Palette >> last [
 	
 	^ self colorAt: allColors size
+]
+
+{ #category : #'palette-variant' }
+Palette >> lighterPalette [
+	
+	"returns the same palette but containing darker colors"
+	
+	| lighterColors |
+	lighterColors := allColors collect: [ :c | 
+		                 c saturation >= 0.4
+			                 ifTrue: [ c adjustSaturation: -0.4 brightness: 0.08 ]
+			                 ifFalse: [ c adjustSaturation: -0.08 brightness: 0.08 ] ].
+	self allColors reset.
+	^ self
+		  addAll: lighterColors;
+		  yourself
 ]
 
 { #category : #accessing }
@@ -191,6 +218,48 @@ Palette >> previousColor [
 	previousShift < 1 ifTrue: [ previousShift := allColors size ].
 	color := self colorAt: previousShift. 
 	^ color
+]
+
+{ #category : #removing }
+Palette >> removeColor: color [
+	
+	"remove a color specified by its index from the collection of colors "
+	
+	^ self allColors remove: color ifAbsent: [ ^ 0 ]
+]
+
+{ #category : #removing }
+Palette >> removeColorAt: index [
+	
+	"remove a color specified by its index from the collection of colors "
+	
+	^ self allColors remove: (self allColors at: index)
+]
+
+{ #category : #'color manipulation' }
+Palette >> replaceColor: oldColor by: newColor [
+
+	"replace a color oldColor by a new color newColor. This method modify the collection of colors and returns the newColor"
+	
+	(oldColor isColor and: newColor isColor) ifFalse: [ ^ Error signal: 'Only replace by an instance of Color' ].
+	^ allColors at: (allColors indexOf: oldColor ifAbsent: [^ 0]) put: newColor
+	
+	
+	
+
+]
+
+{ #category : #'color manipulation' }
+Palette >> replaceColorAt: anIndex by: newColor [
+
+	"replace a color specified by its index anIndex by a new color newColor. This method modify the collection of colors and returns the newColor"
+	
+	newColor isColor ifFalse: [ ^ Error signal: 'Only replace by an instance of Color' ].
+	^ allColors at: anIndex put: newColor
+	
+	
+	
+
 ]
 
 { #category : #accessing }

@@ -1,7 +1,17 @@
 "
-I am a generator of sequential palette. I take 2 different colors and i can make a gradient between them. Thr number of colors also must be given.
+I am a generator of sequential palette. I take 2 different colors and i can make a gradient between them. The number of colors also must be given.
 
-More details and examples are coming ...
+**Variable instances:**
+- startingColor: a starting color wich the gradient will begin
+- endingColor: an ending color wich the gradient will finish
+- numberOfColors: a number of colors to make
+
+Example:
+```Smalltalk
+p := ClpSequentialPaletteGenerator new.
+p	startColor: Color red endColor: Color white;
+	generate: 10
+```
 "
 Class {
 	#name : #ClpSequentialPaletteGenerator,
@@ -60,8 +70,8 @@ ClpSequentialPaletteGenerator >> gradient [
 ClpSequentialPaletteGenerator >> initialize [ 
 
 	super initialize.
-	startingColor := Color white.
-	endingColor := Color black
+	startingColor := Color red darker .
+	endingColor := Color white
 ]
 
 { #category : #accessing }

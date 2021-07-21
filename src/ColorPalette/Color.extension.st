@@ -19,7 +19,8 @@ Color >> hclToLab: hclColor [
 { #category : #'*ColorPalette' }
 Color >> hclToRgb: hclColor [
 	
-	"Taken from https://github.com/d3/d3-color/blob/main/src/lab.js"
+	"The value of l is in the range [0, 100], c is in [0, 230], and h is in [0, 360].
+	Taken from https://github.com/d3/d3-color/blob/main/src/lab.js"
 	
 	^ self labToRgb: (self hclToLab: hclColor )
 		
@@ -30,6 +31,7 @@ Color >> hclToRgb: hclColor [
 Color >> labToHcl: colorLab [
 
 	"HCL(Hue-Chroma-Luminance) its a color space model
+	 The value of l is in the range [0, 100], c is in [0, 230], and h is in [0, 360].
 	 More information on: https://en.wikipedia.org/wiki/HCL_color_space
 	 Taken from https://github.com/d3/d3-color/blob/main/src/lab.js"
 

@@ -1,8 +1,10 @@
 "
 I am a generator of palettes. 
-Note: The number of colors to generate must be specified
+Note: The number of colors to generate must be specified, the default value is 20
 
-More details and examples are coming ...
+To generate a palette use the common method #generate:
+
+
 "
 Class {
 	#name : #ClpPaletteGenerator,
@@ -13,6 +15,12 @@ Class {
 	#category : #'ColorPalette-GeneratePalettes'
 }
 
+{ #category : #translating }
+ClpPaletteGenerator class >> generate: aNumberOfColors [
+
+	^ self new generate: aNumberOfColors 
+]
+
 { #category : #testing }
 ClpPaletteGenerator class >> isAbstract [
 	
@@ -22,11 +30,20 @@ ClpPaletteGenerator class >> isAbstract [
 { #category : #generating }
 ClpPaletteGenerator >> generate [ 
 
+	^ self generate: numberOfColors 
+	 
+]
+
+{ #category : #translating }
+ClpPaletteGenerator >> generate: aNumberOfColors [
+	
+	"return an object of palette with the specified number of colors"
 	| palette |
+	numberOfColors := aNumberOfColors .
 	palette := Palette new .
 	palette addAll: self makeColors .
 	^ palette
-	 
+	
 ]
 
 { #category : #'gt-inspection' }
