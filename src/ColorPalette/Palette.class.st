@@ -191,6 +191,22 @@ Palette >> previousColor [
 	^ color
 ]
 
+{ #category : #removing }
+Palette >> removeColor: color [
+	
+	"remove a color specified by its index from the collection of colors "
+	
+	^ self allColors remove: color ifAbsent: [ ^ 0 ]
+]
+
+{ #category : #removing }
+Palette >> removeColorAt: index [
+	
+	"remove a color specified by its index from the collection of colors "
+	
+	^ self allColors remove: (self allColors at: index)
+]
+
 { #category : #accessing }
 Palette >> second [ 
 	
