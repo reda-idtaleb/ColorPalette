@@ -129,12 +129,11 @@ Palette >> checkAllElementsAreColors: aCollectionOfColors [
 							
 ]
 
-{ #category : #accessing }
+{ #category : #'color manipulation' }
 Palette >> colorAt: index [
 
 	"get a color specefied by its index. If the index is negative then indexing starts from the tail of the collection."
 
-	index < 0 ifTrue: [ ^ allColors at: index % (allColors size + 1) ].
 	self updateCurrentColor: index.
 	^ allColors at: index
 ]
