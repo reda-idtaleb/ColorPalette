@@ -7,11 +7,6 @@ p := Palette example24Colors.
 p colorAt: 1
 ```
 
-```Smalltalk
-p := Palette example24Colors.
-p colorAt: -1 	""the last color is returned""
-```
-
 **Examples to move between colors:**
 ```Smalltalk
 p := Palette example24Colors.
@@ -101,7 +96,7 @@ Palette class >> example24Colors [
 { #category : #adding }
 Palette >> add: aColor [
 	
-	"add only a valid color to the collection"
+	"add a Color to the collection. only an instance of Color is allowed"
 	
 	aColor isColor 
 		ifTrue: [ allColors add: aColor]
@@ -128,7 +123,7 @@ Palette >> allColors [
 { #category : #private }
 Palette >> checkAllElementsAreColors: aCollectionOfColors [
 	
-	"check if all the elements of the collection are an instance of Color"
+	"private. check if all the elements of the collection are an instance of Color"
 	
 	^ aCollectionOfColors allSatisfy: [ :each | each isColor ]
 							
