@@ -207,6 +207,32 @@ Palette >> removeColorAt: index [
 	^ self allColors remove: (self allColors at: index)
 ]
 
+{ #category : #'color manipulation' }
+Palette >> replaceColor: oldColor by: newColor [
+
+	"replace a color oldColor by a new color newColor. This method modify the collection of colors and returns the newColor"
+	
+	(oldColor isColor and: newColor isColor) ifFalse: [ ^ Error signal: 'Only replace by an instance of Color' ].
+	^ allColors at: (allColors indexOf: oldColor ifAbsent: [^ 0]) put: newColor
+	
+	
+	
+
+]
+
+{ #category : #'color manipulation' }
+Palette >> replaceColorAt: anIndex by: newColor [
+
+	"replace a color specified by its index anIndex by a new color newColor. This method modify the collection of colors and returns the newColor"
+	
+	newColor isColor ifFalse: [ ^ Error signal: 'Only replace by an instance of Color' ].
+	^ allColors at: anIndex put: newColor
+	
+	
+	
+
+]
+
 { #category : #accessing }
 Palette >> second [ 
 	
