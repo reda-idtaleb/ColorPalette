@@ -1,7 +1,21 @@
 "
-I am a specific case of sequential colors; I can make a gradient of 3 colors.
+I am a diverging palette generator, and I can make a gradient of 3 colors.
 
-More details and examples are coming
+**Instance variables:**
+- startingColor: a starting color wich the gradient will begin
+- middleColor: a central color which the gradient changes the hue
+- endingColor: an ending color wich the gradient will finish
+- numberOfColors: a number of colors to make
+
+Example:
+```Smalltalk
+p := ClpDivergingPaletteGenerator new.
+""s: is startingColor, m: is the middleColor, e: is the endingColor""
+p s: Color red m: Color white e: Color green; 
+	generate: 10 ""generate 10 colors""
+```
+
+
 "
 Class {
 	#name : #ClpDivergingPaletteGenerator,
