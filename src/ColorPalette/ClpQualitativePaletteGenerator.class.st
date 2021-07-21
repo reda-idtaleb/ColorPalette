@@ -21,24 +21,26 @@ ClpQualitativePaletteGenerator >> initialize [
 { #category : #accessing }
 ClpQualitativePaletteGenerator >> makeColors [
 	
-	^ self qualitative
+	^ self qualitative 
 ]
 
-{ #category : #'instance creation' }
+{ #category : #compute }
 ClpQualitativePaletteGenerator >> qualitative [
-
-	"I create a collection of colors"
-
-	| colors currentColor nextColor |
+	
+	"returns a collection of distinct colors starting from a startingColor"
+	
+	| colors currentColor hue chroma lightness delta step |
 	colors := OrderedCollection new.
 	currentColor := startingColor.
-	colors add: currentColor.
+	hue := currentColor hue.
+	chroma := currentColor chroma.
+	lightness := currentColor lightness .
+	delta := 360.0  - hue.
+	step := delta / numberOfColors  .
+	colors add: startingColor .
 	2 to: numberOfColors do: [ :i | 
-		[ self isChosenColorDifferent: currentColor fromAll: colors ] whileTrue: [ 
-			nextColor := self generateADifferentColorFrom: currentColor .
-			currentColor := nextColor ].
-		colors add: nextColor.
-		currentColor := nextColor ].
+		hue := (hue + step).
+		colors add: (Color h: hue s: chroma l: lightness)].
 	^ colors
 ]
 
