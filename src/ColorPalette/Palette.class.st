@@ -147,6 +147,19 @@ Palette >> currentColor [
 	
 ]
 
+{ #category : #'palette-variant' }
+Palette >> darkerPalette [
+	
+	"returns the same palette but containing darker colors"
+	
+	| darkerColors |
+	darkerColors := allColors collect: [ :c |  c adjustBrightness: -0.3 ].
+	self allColors reset.
+	^ self 
+		addAll: darkerColors;
+		yourself
+]
+
 { #category : #accessing }
 Palette >> first [ 
 	
