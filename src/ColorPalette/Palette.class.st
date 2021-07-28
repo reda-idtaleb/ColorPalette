@@ -181,6 +181,18 @@ Palette >> colorAt: index [
 	^ allColors at: index
 ]
 
+{ #category : #accessing }
+Palette >> colorsDictionary [
+
+	^ colorsDictionary
+]
+
+{ #category : #accessing }
+Palette >> colorsDictionary: anObject [
+
+	colorsDictionary := anObject
+]
+
 { #category : #'palette-variant' }
 Palette >> darkerPalette [
 	
