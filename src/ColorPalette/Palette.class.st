@@ -250,6 +250,33 @@ Palette >> lighterPalette [
 ]
 
 { #category : #accessing }
+Palette >> renameColorAt: oldKey to: newKey [
+
+	"I rename a key of a color from the dictionary of the colors. A new ditionary is created with the same keys and values except the changed one"
+
+	| newColorsDictionary |
+	newColorsDictionary := OrderedDictionary new.
+	colorsDictionary associationsDo: [ :each | 
+		each key = oldKey
+			ifTrue: [ newColorsDictionary add: newKey -> each value ]
+			ifFalse: [ newColorsDictionary add: each key -> each value ] ].
+	self colorsDictionary: newColorsDictionary
+]
+
+{ #category : #'color manipulation' }
+Palette >> replaceColorAt: anIndex with: newColor [
+
+	"replace a color specified by its index anIndex by a new color newColor. This method modify the dictionary of colors and returns the newColor"
+	
+	newColor isColor ifFalse: [ ^ Error signal: 'Only replace by an instance of Color' ].
+	^ colorsDictionary at: anIndex put: newColor
+	
+	
+	
+
+]
+
+{ #category : #accessing }
 Palette >> second [ 
 	
 	^ self colorAt: 2
