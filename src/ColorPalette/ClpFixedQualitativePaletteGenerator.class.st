@@ -94,16 +94,6 @@ ClpFixedQualitativePaletteGenerator class >> example24AccentColors [
 	Color fromString: '#ed0000'}
 ]
 
-{ #category : #private }
-ClpFixedQualitativePaletteGenerator >> filterSimilarColor: aColor fromAll: colors [ 
-
-	"two colors are very similar when their distances is less than 0.05"
-
-	^ colors allSatisfy: [ :each | (each diff: aColor) < 0.05  ]
-
-	
-]
-
 { #category : #'instance creation' }
 ClpFixedQualitativePaletteGenerator >> fromColors: aCollectionOfColors get: aNumberOfColors [
 
@@ -133,23 +123,4 @@ ClpFixedQualitativePaletteGenerator >> makeColors [
 	^ self
 		  fromColors: (self onlyDistinctColorFrom: self class example24AccentColors )
 		  get: numberOfColors
-]
-
-{ #category : #private }
-ClpFixedQualitativePaletteGenerator >> onlyDistinctColorFrom: aCollectionOfColor [ 
-
-	"extract the most distinct colors from a collection of colors"
-	| currentColor colors |
-	colors := OrderedCollection new.
-	currentColor := aCollectionOfColor first.
-	colors add: currentColor.
-	2 to: aCollectionOfColor size do: [ :indexNextColor |
-		| nextColor |
-		nextColor := aCollectionOfColor at: indexNextColor.
-		(colors last diff: nextColor) < 0.06
-			ifFalse: [ 
-				(self filterSimilarColor: nextColor fromAll: colors) ifFalse: [ 
-					colors add: nextColor ] ].
-		currentColor := nextColor ].
-	^ colors
 ]
