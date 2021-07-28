@@ -109,16 +109,9 @@ ClpFixedQualitativePaletteGenerator class >> example60AccentColorsPalette [
 { #category : #'instance creation' }
 ClpFixedQualitativePaletteGenerator >> fromColors: aCollectionOfColors get: aNumberOfColors [
 
-	"extract a number of colors aNumberOfColors from a predefined accent palette with 52 most distinguished colors"
+	"extract first colors aNumberOfColors from a predefined accent palette with 60 most distinguished colors"
 
-	| extractedColors divide |
-	divide := aCollectionOfColors size // aNumberOfColors.
-	extractedColors := OrderedCollection new.
-	aCollectionOfColors do: [ :each | 
-		((aCollectionOfColors indexOf: each) % divide = 0 and:
-			 extractedColors size < aNumberOfColors) ifTrue: [ 
-			extractedColors add: each ] ].
-	^ extractedColors
+	^ aCollectionOfColors copyFrom: 1 to: aNumberOfColors
 ]
 
 { #category : #initialization }
