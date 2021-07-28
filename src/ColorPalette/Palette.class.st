@@ -162,10 +162,11 @@ Palette >> addAll: aKeyedCollectionOfColors [
 { #category : #adding }
 Palette >> addName: aName forColor: color [
 	
-	"add a name for a color to the dictionary of colors"
+	"Associate a name 'aName' with a color 'color' and add it to the color dictionary"
 	
 	colorsDictionary add: aName -> color.
 	self updateIndexColor: (self colorsDictionary indexOfKey: aName).
+	
 ]
 
 { #category : #accessing }
