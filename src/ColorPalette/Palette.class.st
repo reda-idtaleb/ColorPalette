@@ -122,6 +122,15 @@ Palette >> addAll: aKeyedCollectionOfColors [
 		ifFalse: [ Error signal: 'Not all elements are instance of Color' ]
 ]
 
+{ #category : #adding }
+Palette >> addName: aName forColor: color [
+	
+	"add a name for a color to the dictionary of colors"
+	
+	colorsDictionary add: aName -> color.
+	self updateIndexColor: (self colorsDictionary indexOfKey: aName).
+]
+
 { #category : #accessing }
 Palette >> allColors [
 
