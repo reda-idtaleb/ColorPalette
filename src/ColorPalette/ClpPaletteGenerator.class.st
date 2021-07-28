@@ -10,7 +10,8 @@ Class {
 	#name : #ClpPaletteGenerator,
 	#superclass : #Object,
 	#instVars : [
-		'numberOfColors'
+		'numberOfColors',
+		'generatedPalette'
 	],
 	#category : #'ColorPalette-GeneratePalettes'
 }
@@ -28,10 +29,11 @@ ClpPaletteGenerator class >> isAbstract [
 ]
 
 { #category : #generating }
-ClpPaletteGenerator >> generate [ 
+ClpPaletteGenerator >> generate [
 
-	^ self generate: numberOfColors 
-	 
+	"generate 20 colors by default"
+
+	^ self generate: self numberOfColors
 ]
 
 { #category : #translating }
