@@ -100,3 +100,29 @@ PaletteTest >> testColorFor [
 	self assert: (emptyPalette colorFor: #red) equals: Color red.
 	self assert: (emptyPalette colorFor: #white) equals: Color white.
 ]
+
+{ #category : #tests }
+PaletteTest >> testRenameColorAtTo [
+
+	| colorsDict oldFirstKey newColorName newFirstKey |
+	colorsDict := nonEmptyPalette colorsDictionary.
+	oldFirstKey := colorsDict keyAtIndex: 1.
+	newColorName := #WhiteBackground.
+	nonEmptyPalette renameColorAt: oldFirstKey to: newColorName.
+	newFirstKey := nonEmptyPalette colorsDictionary keyAtIndex: 1.
+	self assert: newFirstKey equals: newColorName.
+	self assert: (nonEmptyPalette colorsDictionary includesAssociation:
+			 newFirstKey -> (nonEmptyPalette colorsDictionary at: newFirstKey))
+]
+
+{ #category : #tests }
+PaletteTest >> testReplaceColorAtWith [
+	
+	| newColor replacedColor |
+	newColor := Color green.
+	replacedColor := nonEmptyPalette replaceColorAt: 1 with: newColor .
+	self assert: replacedColor equals: newColor .
+	self assert: nonEmptyPalette asCollection first equals: newColor .
+	
+
+]
