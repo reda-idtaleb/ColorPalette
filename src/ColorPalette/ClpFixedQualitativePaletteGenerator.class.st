@@ -16,82 +16,81 @@ Class {
 }
 
 { #category : #examples }
-ClpFixedQualitativePaletteGenerator class >> example15AccentColors [
+ClpFixedQualitativePaletteGenerator class >> example16AccentColorsPalette [
 
-	^  {  Color fromString: '#d4ac0d'.
-        Color fromString: '#875692'.
-        Color fromString: '#f38400'.
-        Color fromString: '#a1caf1'.
-        Color fromString: '#be0032'.
-        Color fromString: '#008856'.
-        Color fromString: '#e68fac'.
-        Color fromString: '#0067a5'.
-        Color fromString: '#f99379'.
-        Color fromString: '#c2b280'.
-        Color fromString: '#873600'.
-        Color fromString: '#8db600'.
-        Color fromString: '#f7dc6f'.
-        Color fromString: '#48c9b0'.
-        Color fromString: '#ff5050'}
+	^ self new generatedPalette class withAll: { 
+			  (Color fromString: '#7a7377').
+			  (Color fromString: '#875692').
+			  (Color fromString: '#f38400').
+			  (Color fromString: '#a1caf1').
+			  (Color fromString: '#be0032').
+			  (Color fromString: '#008856').
+			  (Color fromString: '#e68fac').
+			  (Color fromString: '#0067a5').
+			  (Color fromString: '#f99379').
+			  (Color fromString: '#c2b280').
+			  (Color fromString: '#873600').
+			  (Color fromString: '#8db600').
+			  (Color fromString: '#DEC663').
+			  (Color fromString: '#48c9b0').
+			  (Color fromString: '#ff5050').
+			  (Color fromString: '#000000')}
 ]
 
 { #category : #examples }
-ClpFixedQualitativePaletteGenerator class >> example22AccentColors [ 
+ClpFixedQualitativePaletteGenerator class >> example20AccentColorsPalette [
 
-	^  { 
-	Color fromString: '#ff00b6'.
-	Color fromString: '#038246'.
-	Color fromString: '#e6be00'.
-	Color fromString: '#009fff'.
-	Color fromString: '#9a4d42'.
-	Color fromString: '#00ffbe'.
-	Color fromString: '#783fc1'.
-	Color fromString: '#1fb5b8'.
-	Color fromString: '#ffacfd'.
-	Color fromString: '#b1cc71'.
-	Color fromString: '#de7693'.
-	Color fromString: '#c8ff00'.
-	Color fromString: '#ff9952'.
-	Color fromString: '#93d4ff'.
-	Color fromString: '#004cff'.
-	Color fromString: '#84e19f'.
-	Color fromString: '#f7ba9e'.
-	Color fromString: '#a3cbcc'.
-	Color fromString: '#a779e0'.
-	Color fromString: '#978fa1'.
-	Color fromString: '#fae170'.
-	Color fromString: '#b09900'}
+	^ self new generatedPalette class withAll: { 
+			  (Color fromString: '#ff00b6').
+			  (Color fromString: '#009fff').
+			  (Color fromString: '#BD8A83').
+			  (Color fromString: '#00ffbe').
+			  (Color fromString: '#783fc1').
+			  (Color fromString: '#1fb5b8').
+			  (Color fromString: '#ffacfd').
+			  (Color fromString: '#b1cc71').
+			  (Color fromString: '#de7693').
+			  (Color fromString: '#c8ff00').
+			  (Color fromString: '#ff9952').
+			  (Color fromString: '#93d4ff').
+			  (Color fromString: '#004cff').
+			  (Color fromString: '#84e19f').
+			  (Color fromString: '#f7ba9e').
+			  (Color fromString: '#a3cbcc').
+			  (Color fromString: '#a779e0').
+			  (Color fromString: '#978fa1').
+			  (Color fromString: '#fae170').
+			  (Color fromString: '#b09900') }
 ]
 
 { #category : #examples }
-ClpFixedQualitativePaletteGenerator class >> example24AccentColors [ 
+ClpFixedQualitativePaletteGenerator class >> example24AccentColorsPalette [
 
-	^  
-	{ 
-	Color fromString: '#5a5156'.
-	Color fromString: '#bbc9d9'.
-	Color fromString: '#ff4d57'.
-	Color fromString: '#8f3b3b'.
-	Color fromString: '#3283fe'.
-	Color fromString: '#feaf16'.
-	Color fromString: '#e342a1'.
-	Color fromString: '#1fecbf'.
-	Color fromString: '#2bc6e8'.
-	Color fromString: '#dea0fd'.
-	Color fromString: '#aa0dfe'.
-	Color fromString: '#f8a19f'.
-	Color fromString: '#325a9b'.
-	Color fromString: '#d97238'.
-	Color fromString: '#469a75'.
-	Color fromString: '#85660d'.
-	Color fromString: '#61d485'.
-	Color fromString: '#f7e1a0'.
-	Color fromString: '#a779e0'.
-	Color fromString: '#978fa1'.
-	Color fromString: '#3b00fb'.
-	Color fromString: '#b09900'.
-	Color fromString: '#fbe426'.
-	Color fromString: '#ed0000'}
+	^ self new generatedPalette class withAll: { 
+			  (Color fromString: '#ACA8AA').
+			  (Color fromString: '#bbc9d9').
+			  (Color fromString: '#ff4d57').
+			  (Color fromString: '#AE7190').
+			  (Color fromString: '#3283fe').
+			  (Color fromString: '#feaf16').
+			  (Color fromString: '#e342a1').
+			  (Color fromString: '#1fecbf').
+			  (Color fromString: '#2bc6e8').
+			  (Color fromString: '#dea0fd').
+			  (Color fromString: '#aa0dfe').
+			  (Color fromString: '#f8a19f').
+			  (Color fromString: '#325a9b').
+			  (Color fromString: '#d97238').
+			  (Color fromString: '#469a75').
+			  (Color fromString: '#85660d').
+			  (Color fromString: '#61d485').
+			  (Color fromString: '#f7e1a0').
+			  (Color fromString: '#a779e0').
+			  (Color fromString: '#978fa1').
+			  (Color fromString: '#3b00fb').
+			  (Color fromString: '#b09900').
+			  (Color fromString: '#fbe426').
+			  (Color fromString: '#ed0000') }
 ]
 
 { #category : #'instance creation' }
