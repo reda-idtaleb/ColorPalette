@@ -1,24 +1,34 @@
 "
-I am a color palette. I am represented by a collection of colors in which you can access colors.
+I am a color palette. I am represented by a dictionary of colors in which you can access colors.
+When you want to add a color in the dictionary use **#add: aColor**, which adds a color whose key is an index (by default) generated automatically in the dictionary.
 
-**Examples to select a color by it's index:**
+**Add as many colors as you want:**
+```Smalltalk
+p := Palette new .
+p add: Color red;
+  add: Color lightBlue
+```
+
+Use **#addName:forColor:** to add a color as a value with a name as a key.
+
+**To select a color by its index, Use #colorAt: only if the keys are indices:**
 ```Smalltalk
 p := Palette example24Colors.
 p colorAt: 1
 ```
 
-**Examples to move between colors:**
+**To move between colors:**
 ```Smalltalk
 p := Palette example24Colors.
 p currentColor ""by default returns the first color in the list of colors in the palette"" 
 ```
-You can get the next color:
+**You can get the next color:**
 ```Smalltalk
 p := Palette example24Colors.
 p nextColor ""return the next color of the current color""
 ```
 
-You can also get the previous color:
+**You can also get the previous color:**
 ```Smalltalk
 p := Palette example24Colors.
 p previousColor ""return the previous color of the current color""
@@ -32,21 +42,14 @@ p nextColor. ""return the 4th color""
 p currentColor ""return the 4th color""
 ```
 
-**Add as many colors as you want:**
+**Use #withAll: to add a collection of colors, so that the keys are the indexes of each color according to their order in the collection.**
 ```Smalltalk
-p := Palette new .
-p add: Color red;
-  add: Color lightBlue
-```
-**Or, adding a collection of colors:**
-```Smalltalk
-p := Palette new .
-p addAll: { Color red. Color blue. Color green }
+p := Palette withAll: { Color red. Color blue. Color green }
 ```
 **Get the collection of colors of the palette**
 ```Smalltalk
 p := Palette example24Colors.
-p allColors
+p asCollection
 ```
 
 "
@@ -54,8 +57,8 @@ Class {
 	#name : #Palette,
 	#superclass : #Object,
 	#instVars : [
-		'currentShift',
-		'allColors'
+		'colorsDictionary',
+		'index'
 	],
 	#category : #'ColorPalette-Palette'
 }
@@ -138,15 +141,6 @@ Palette >> colorAt: index [
 	^ allColors at: index
 ]
 
-{ #category : #accessing }
-Palette >> currentColor [
-	
-	"get the current color in the list of the colors"
-
-	^ self colorAt: currentShift . 
-	
-]
-
 { #category : #'palette-variant' }
 Palette >> darkerPalette [
 	
@@ -196,44 +190,12 @@ Palette >> lighterPalette [
 		  yourself
 ]
 
-{ #category : #accessing }
-Palette >> nextColor [
-	
-	"get the next color of the current color(use #currentColor) in the list of colors. If the current color is the last color, then the next color is the first color in the color list."
-	
-	| color nextShift |
-	nextShift := currentShift + 1.
-	nextShift > (allColors size) ifTrue: [ nextShift := 1 ].
-	color := self colorAt: nextShift. 
-	^ color
-]
-
-{ #category : #accessing }
-Palette >> previousColor [
-	
-	"get the previous color of the current color(use #currentColor) in the list of colors"
-	
-	| color previousShift |
-	previousShift := currentShift - 1.
-	previousShift < 1 ifTrue: [ previousShift := allColors size ].
-	color := self colorAt: previousShift. 
-	^ color
-]
-
 { #category : #removing }
 Palette >> removeColor: color [
 	
 	"remove a color specified by its index from the collection of colors "
 	
 	^ self allColors remove: color ifAbsent: [ ^ 0 ]
-]
-
-{ #category : #removing }
-Palette >> removeColorAt: index [
-	
-	"remove a color specified by its index from the collection of colors "
-	
-	^ self allColors remove: (self allColors at: index)
 ]
 
 { #category : #'color manipulation' }
@@ -272,10 +234,4 @@ Palette >> second [
 Palette >> third [
 	
 	^ self colorAt: 3
-]
-
-{ #category : #private }
-Palette >> updateCurrentColor: index [
-
-	currentShift := index
 ]
