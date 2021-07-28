@@ -126,3 +126,18 @@ PaletteTest >> testReplaceColorAtWith [
 	
 
 ]
+
+{ #category : #tests }
+PaletteTest >> testWithAll [
+
+	| palette colorsDict indexColor |
+	palette := self classToTest withAll: self colors.
+	colorsDict := palette colorsDictionary.
+	self assert: colorsDict size equals: self colors size.
+	indexColor := 1.
+	colorsDict associationsDo: [ :each | 
+		self
+			assert: (colorsDict associationAt: each key)
+			equals: indexColor -> (self colors at: indexColor).
+		indexColor := indexColor + 1 ]
+]
