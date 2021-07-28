@@ -180,6 +180,14 @@ Palette >> colorAt: anIndex [
 	^ colorsDictionary at: anIndex
 ]
 
+{ #category : #adding }
+Palette >> colorFor: key [
+	
+	"get a color specified by its name from the dictionary of colors"
+	
+	^ colorsDictionary at: key
+]
+
 { #category : #accessing }
 Palette >> colorsDictionary [
 
