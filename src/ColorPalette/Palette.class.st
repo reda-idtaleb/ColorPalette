@@ -98,13 +98,14 @@ Palette class >> example24Colors [
 
 { #category : #adding }
 Palette >> add: aColor [
-	
-	"add a Color to the collection. only an instance of Color is allowed"
-	
-	aColor isColor 
-		ifTrue: [ allColors add: aColor]
+
+	"I add a color whose key is an index to the dictionary of colors. Only an instance of Color is allowed"
+
+	aColor value isColor
+		ifTrue: [ 
+			colorsDictionary add: index -> aColor.
+			self updateIndexColor: index + 1 ]
 		ifFalse: [ ^ Error signal: 'The element added is not a valid Color' ]
-							
 ]
 
 { #category : #adding }
