@@ -40,11 +40,10 @@ ClpPaletteGenerator >> generate [
 ClpPaletteGenerator >> generate: aNumberOfColors [
 	
 	"return an object of palette with the specified number of colors"
-	| palette |
-	numberOfColors := aNumberOfColors .
-	palette := Palette new .
-	palette addAll: self makeColors .
-	^ palette
+	
+	self numberOfColors: aNumberOfColors .
+	^ generatedPalette class withAll: self makeColors .
+	
 	
 ]
 
