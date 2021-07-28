@@ -230,7 +230,7 @@ Palette >> initialize [
 { #category : #accessing }
 Palette >> last [
 	
-	^ self colorAt: allColors size
+	^ self colorAt: self asCollection size
 ]
 
 { #category : #'palette-variant' }
