@@ -287,3 +287,9 @@ Palette >> third [
 	
 	^ self colorAt: 3
 ]
+
+{ #category : #private }
+Palette >> updateIndexColor: anIndex [
+
+	index := anIndex
+]
