@@ -91,6 +91,17 @@ PaletteTest >> testColorAt [
 ]
 
 { #category : #tests }
+PaletteTest >> testColorFor [
+	
+	
+	emptyPalette addName: #red forColor: Color red. 
+	emptyPalette addName: #white forColor: Color white. 
+	
+	self assert: (emptyPalette colorFor: #red) equals: Color red.
+	self assert: (emptyPalette colorFor: #white) equals: Color white.
+]
+
+{ #category : #tests }
 PaletteTest >> testCurrentColor [
 	
 	| aChosenColor |
