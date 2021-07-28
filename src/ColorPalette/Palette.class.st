@@ -173,12 +173,11 @@ Palette >> asCollection [
 ]
 
 { #category : #'color manipulation' }
-Palette >> colorAt: index [
+Palette >> colorAt: anIndex [
 
-	"get a color specefied by its index. If the index is negative then indexing starts from the tail of the collection."
+	"get a color at the index anIndex from the dictionary of colors. Use this method only if the keys are the indexes, otherwise use #colorFor:"
 
-	self updateCurrentColor: index.
-	^ allColors at: index
+	^ colorsDictionary at: anIndex
 ]
 
 { #category : #accessing }
