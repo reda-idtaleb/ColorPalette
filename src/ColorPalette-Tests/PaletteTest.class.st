@@ -53,15 +53,16 @@ PaletteTest >> testAdd [
 { #category : #tests }
 PaletteTest >> testAddAll [
 	
-	| pal |
-	pal := Palette new. 
-	self assert: pal allColors isEmpty.
-	pal addAll: { Color white. Color red }.
-	self assert: pal allColors size equals: 2.
-	self assert: pal first equals: Color white.
-	self assert: pal last equals: Color red.
+	| keyedCollection |
+	self assert: emptyPalette colorsDictionary isEmpty.
+	
+	keyedCollection := { #snowyWhite -> Color white . #coolRed -> Color red darker }.
+	emptyPalette addAll: keyedCollection .
+	self assert: emptyPalette colorsDictionary size equals: keyedCollection size .
+	self assert: (emptyPalette colorsDictionary includesAssociation: #snowyWhite -> Color white) . 
+	self assert: (emptyPalette colorsDictionary includesAssociation: #coolRed -> Color red darker) . 
 
-	self should: [ pal addAll: { 'notAColor' } ] raise: Error
+	self should: [ emptyPalette addAll: { 'notAColor' } ] raise: Error
 ]
 
 { #category : #tests }
