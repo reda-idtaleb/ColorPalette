@@ -59,7 +59,7 @@ ClpPaletteGenerator >> gtInspectorColorsIn: composite [
 	
 	^ composite fastTable
 		title: 'Colors';
-		display: [ self generate allColors ];
+		display: [ self generate asCollection ];
 		beMultiple;
 		enableElementIndex;
 		wantsAutomaticRefresh: true;
