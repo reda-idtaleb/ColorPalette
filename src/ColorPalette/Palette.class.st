@@ -223,8 +223,8 @@ Palette >> first [
 Palette >> initialize [ 
 
 	super initialize .
-	allColors := OrderedCollection new.
-	currentShift := 1
+	colorsDictionary := OrderedDictionary new.
+	index := 1
 ]
 
 { #category : #accessing }
