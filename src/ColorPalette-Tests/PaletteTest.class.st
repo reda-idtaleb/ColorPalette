@@ -102,43 +102,6 @@ PaletteTest >> testColorFor [
 ]
 
 { #category : #tests }
-PaletteTest >> testCurrentColor [
-	
-	| aChosenColor |
-	self assert: palette currentColor equals: palette first .
-	aChosenColor := palette colorAt: 2.
-	self assert: palette currentColor equals: aChosenColor  
-]
-
-{ #category : #tests }
-PaletteTest >> testNextColor [
-	
-	| aChosenColor |
-	self assert: palette currentColor equals: palette first .
-	self assert: palette nextColor equals: palette second.
-	
-	aChosenColor := palette colorAt: 2.
-	self assert: palette currentColor equals: aChosenColor .
-	self assert: palette nextColor equals: palette third.
-	
-	aChosenColor := palette last.
-	self assert: palette currentColor equals: aChosenColor .
-	self assert: palette nextColor equals: palette first 
-]
-
-{ #category : #tests }
-PaletteTest >> testPreviousColor [
-	
-	| colorSelected |
-	self assert: palette currentColor equals: palette first .
-	self assert: palette previousColor equals: palette last.
-	
-	colorSelected := palette colorAt: 2.
-	self assert: palette currentColor equals: palette second .
-	self assert: palette previousColor equals: palette first
-]
-
-{ #category : #tests }
 PaletteTest >> testRemoveColor [
 	
 	| removedColor nonExistantColor |
@@ -152,19 +115,6 @@ PaletteTest >> testRemoveColor [
 	nonExistantColor := Color green.
 	self assert: (palette removeColor: nonExistantColor) equals: 0.
 	self assert: palette allColors size equals: 2.
-	
-
-]
-
-{ #category : #tests }
-PaletteTest >> testRemoveColorAt [
-	
-	| removedColor |
-	self assert: palette allColors size equals: 3. 
-	removedColor := palette removeColorAt: 1.
-	self assert: removedColor equals: Color white.
-	self assert: palette allColors size equals: 2.
-	self assert: palette allColors first equals: Color black .
 	
 
 ]
