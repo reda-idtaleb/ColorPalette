@@ -79,7 +79,8 @@ Palette class >> checkAllElementsAreColors: aCollectionOfColors [
 Palette class >> example24Colors [
 	
 	| palette |
-	palette := self new 
+	palette := self new.
+	palette 
 		add: (Color fromString: '#4572a7');
 		add: (Color fromString: '#c0504d');
 		add: (Color fromString: '#9bbb28'); 
