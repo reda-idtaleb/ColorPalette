@@ -109,12 +109,16 @@ Palette >> add: aColor [
 ]
 
 { #category : #adding }
-Palette >> addAll: aCollectionOfColors [
+Palette >> addAll: aKeyedCollectionOfColors [
 
-	"add a collection of colors"
-
-	^ (self checkAllElementsAreColors: aCollectionOfColors)
-		ifTrue: [ allColors addAll: aCollectionOfColors ]
+	"I take a keyed collection of colors and i add all its pairs (key->value) to the colorsDictionary"
+	
+	| collectionAsOrderedDictionary |
+	collectionAsOrderedDictionary := aKeyedCollectionOfColors asOrderedDictionary .
+	(self class checkAllElementsAreColors: collectionAsOrderedDictionary)
+		ifTrue: [ 
+			collectionAsOrderedDictionary associationsDo: [ :each | 
+				self colorsDictionary add: each key -> each value ] ]
 		ifFalse: [ Error signal: 'Not all elements are instance of Color' ]
 ]
 
