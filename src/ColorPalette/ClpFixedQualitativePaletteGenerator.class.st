@@ -16,107 +16,102 @@ Class {
 }
 
 { #category : #examples }
-ClpFixedQualitativePaletteGenerator class >> example15AccentColors [
+ClpFixedQualitativePaletteGenerator class >> example16AccentColorsPalette [
 
-	^  {  Color fromString: '#d4ac0d'.
-        Color fromString: '#875692'.
-        Color fromString: '#f38400'.
-        Color fromString: '#a1caf1'.
-        Color fromString: '#be0032'.
-        Color fromString: '#008856'.
-        Color fromString: '#e68fac'.
-        Color fromString: '#0067a5'.
-        Color fromString: '#f99379'.
-        Color fromString: '#c2b280'.
-        Color fromString: '#873600'.
-        Color fromString: '#8db600'.
-        Color fromString: '#f7dc6f'.
-        Color fromString: '#48c9b0'.
-        Color fromString: '#ff5050'}
+	^ self new generatedPalette class withAll: { 
+			  (Color fromString: '#7a7377').
+			  (Color fromString: '#875692').
+			  (Color fromString: '#f38400').
+			  (Color fromString: '#a1caf1').
+			  (Color fromString: '#be0032').
+			  (Color fromString: '#008856').
+			  (Color fromString: '#e68fac').
+			  (Color fromString: '#0067a5').
+			  (Color fromString: '#f99379').
+			  (Color fromString: '#c2b280').
+			  (Color fromString: '#873600').
+			  (Color fromString: '#8db600').
+			  (Color fromString: '#DEC663').
+			  (Color fromString: '#48c9b0').
+			  (Color fromString: '#ff5050').
+			  (Color fromString: '#000000')}
 ]
 
 { #category : #examples }
-ClpFixedQualitativePaletteGenerator class >> example22AccentColors [ 
+ClpFixedQualitativePaletteGenerator class >> example20AccentColorsPalette [
 
-	^  { 
-	Color fromString: '#ff00b6'.
-	Color fromString: '#038246'.
-	Color fromString: '#e6be00'.
-	Color fromString: '#009fff'.
-	Color fromString: '#9a4d42'.
-	Color fromString: '#00ffbe'.
-	Color fromString: '#783fc1'.
-	Color fromString: '#1fb5b8'.
-	Color fromString: '#ffacfd'.
-	Color fromString: '#b1cc71'.
-	Color fromString: '#de7693'.
-	Color fromString: '#c8ff00'.
-	Color fromString: '#ff9952'.
-	Color fromString: '#93d4ff'.
-	Color fromString: '#004cff'.
-	Color fromString: '#84e19f'.
-	Color fromString: '#f7ba9e'.
-	Color fromString: '#a3cbcc'.
-	Color fromString: '#a779e0'.
-	Color fromString: '#978fa1'.
-	Color fromString: '#fae170'.
-	Color fromString: '#b09900'}
+	^ self new generatedPalette class withAll: { 
+			  (Color fromString: '#ff00b6').
+			  (Color fromString: '#009fff').
+			  (Color fromString: '#BD8A83').
+			  (Color fromString: '#00ffbe').
+			  (Color fromString: '#783fc1').
+			  (Color fromString: '#1fb5b8').
+			  (Color fromString: '#ffacfd').
+			  (Color fromString: '#b1cc71').
+			  (Color fromString: '#de7693').
+			  (Color fromString: '#c8ff00').
+			  (Color fromString: '#ff9952').
+			  (Color fromString: '#93d4ff').
+			  (Color fromString: '#004cff').
+			  (Color fromString: '#84e19f').
+			  (Color fromString: '#f7ba9e').
+			  (Color fromString: '#a3cbcc').
+			  (Color fromString: '#a779e0').
+			  (Color fromString: '#978fa1').
+			  (Color fromString: '#fae170').
+			  (Color fromString: '#b09900') }
 ]
 
 { #category : #examples }
-ClpFixedQualitativePaletteGenerator class >> example24AccentColors [ 
+ClpFixedQualitativePaletteGenerator class >> example24AccentColorsPalette [
 
-	^  
-	{ 
-	Color fromString: '#5a5156'.
-	Color fromString: '#bbc9d9'.
-	Color fromString: '#ff4d57'.
-	Color fromString: '#8f3b3b'.
-	Color fromString: '#3283fe'.
-	Color fromString: '#feaf16'.
-	Color fromString: '#e342a1'.
-	Color fromString: '#1fecbf'.
-	Color fromString: '#2bc6e8'.
-	Color fromString: '#dea0fd'.
-	Color fromString: '#aa0dfe'.
-	Color fromString: '#f8a19f'.
-	Color fromString: '#325a9b'.
-	Color fromString: '#d97238'.
-	Color fromString: '#469a75'.
-	Color fromString: '#85660d'.
-	Color fromString: '#61d485'.
-	Color fromString: '#f7e1a0'.
-	Color fromString: '#a779e0'.
-	Color fromString: '#978fa1'.
-	Color fromString: '#3b00fb'.
-	Color fromString: '#b09900'.
-	Color fromString: '#fbe426'.
-	Color fromString: '#ed0000'}
+	^ self new generatedPalette class withAll: { 
+			  (Color fromString: '#ACA8AA').
+			  (Color fromString: '#bbc9d9').
+			  (Color fromString: '#ff4d57').
+			  (Color fromString: '#AE7190').
+			  (Color fromString: '#3283fe').
+			  (Color fromString: '#feaf16').
+			  (Color fromString: '#e342a1').
+			  (Color fromString: '#1fecbf').
+			  (Color fromString: '#2bc6e8').
+			  (Color fromString: '#dea0fd').
+			  (Color fromString: '#aa0dfe').
+			  (Color fromString: '#f8a19f').
+			  (Color fromString: '#325a9b').
+			  (Color fromString: '#d97238').
+			  (Color fromString: '#469a75').
+			  (Color fromString: '#85660d').
+			  (Color fromString: '#61d485').
+			  (Color fromString: '#f7e1a0').
+			  (Color fromString: '#a779e0').
+			  (Color fromString: '#978fa1').
+			  (Color fromString: '#3b00fb').
+			  (Color fromString: '#b09900').
+			  (Color fromString: '#fbe426').
+			  (Color fromString: '#ed0000') }
 ]
 
-{ #category : #private }
-ClpFixedQualitativePaletteGenerator >> filterSimilarColor: aColor fromAll: colors [ 
-
-	"two colors are very similar when their distances is less than 0.05"
-
-	^ colors allSatisfy: [ :each | (each diff: aColor) < 0.05  ]
-
+{ #category : #examples }
+ClpFixedQualitativePaletteGenerator class >> example60AccentColorsPalette [
 	
+	| allColors |
+	allColors := OrderedCollection new .
+	allColors 
+		addAll: self example16AccentColorsPalette asCollection ;
+	 	addAll: self example20AccentColorsPalette asCollection ;
+		addAll: self example24AccentColorsPalette asCollection . 
+	^ self new generatedPalette class withAll: allColors 
+			
 ]
 
 { #category : #'instance creation' }
 ClpFixedQualitativePaletteGenerator >> fromColors: aCollectionOfColors get: aNumberOfColors [
 
-	"extract a number of colors aNumberOfColors from a predefined accent palette with 52 most distinguished colors"
+	"extract first colors aNumberOfColors from a predefined accent palette with 60 most distinguished colors"
 
-	| extractedColors divide |
-	divide := aCollectionOfColors size // aNumberOfColors.
-	extractedColors := OrderedCollection new.
-	aCollectionOfColors do: [ :each | 
-		((aCollectionOfColors indexOf: each) % divide = 0 and:
-			 extractedColors size < aNumberOfColors) ifTrue: [ 
-			extractedColors add: each ] ].
-	^ extractedColors
+	^ aCollectionOfColors copyFrom: 1 to: aNumberOfColors
 ]
 
 { #category : #initialization }
@@ -129,27 +124,10 @@ ClpFixedQualitativePaletteGenerator >> initialize [
 { #category : #accessing }
 ClpFixedQualitativePaletteGenerator >> makeColors [
 	
-	(numberOfColors > self class example24AccentColors size) ifTrue: [ Error signal: 'Maximum number of colors to choose is 24'  ].
+	self numberOfColors
+	> self class example60AccentColorsPalette asCollection size ifTrue: [ 
+		Error signal: 'Maximum number of colors to choose is 60' ].
 	^ self
-		  fromColors: (self onlyDistinctColorFrom: self class example24AccentColors )
-		  get: numberOfColors
-]
-
-{ #category : #private }
-ClpFixedQualitativePaletteGenerator >> onlyDistinctColorFrom: aCollectionOfColor [ 
-
-	"extract the most distinct colors from a collection of colors"
-	| currentColor colors |
-	colors := OrderedCollection new.
-	currentColor := aCollectionOfColor first.
-	colors add: currentColor.
-	2 to: aCollectionOfColor size do: [ :indexNextColor |
-		| nextColor |
-		nextColor := aCollectionOfColor at: indexNextColor.
-		(colors last diff: nextColor) < 0.06
-			ifFalse: [ 
-				(self filterSimilarColor: nextColor fromAll: colors) ifFalse: [ 
-					colors add: nextColor ] ].
-		currentColor := nextColor ].
-	^ colors
+		  fromColors: self class example60AccentColorsPalette asCollection
+		  get: self numberOfColors
 ]

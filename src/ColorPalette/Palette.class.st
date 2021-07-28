@@ -1,24 +1,34 @@
 "
-I am a color palette. I am represented by a collection of colors in which you can access colors.
+I am a color palette. I am represented by a dictionary of colors in which you can access colors.
+When you want to add a color in the dictionary use **#add: aColor**, which adds a color whose key is an index (by default) generated automatically in the dictionary.
 
-**Examples to select a color by it's index:**
+**Add as many colors as you want:**
+```Smalltalk
+p := Palette new .
+p add: Color red;
+  add: Color lightBlue
+```
+
+Use **#addName:forColor:** to add a color as a value with a name as a key.
+
+**To select a color by its index, Use #colorAt: only if the keys are indices:**
 ```Smalltalk
 p := Palette example24Colors.
 p colorAt: 1
 ```
 
-**Examples to move between colors:**
+**To move between colors:**
 ```Smalltalk
 p := Palette example24Colors.
 p currentColor ""by default returns the first color in the list of colors in the palette"" 
 ```
-You can get the next color:
+**You can get the next color:**
 ```Smalltalk
 p := Palette example24Colors.
 p nextColor ""return the next color of the current color""
 ```
 
-You can also get the previous color:
+**You can also get the previous color:**
 ```Smalltalk
 p := Palette example24Colors.
 p previousColor ""return the previous color of the current color""
@@ -32,21 +42,14 @@ p nextColor. ""return the 4th color""
 p currentColor ""return the 4th color""
 ```
 
-**Add as many colors as you want:**
+**Use #withAll: to add a collection of colors, so that the keys are the indexes of each color according to their order in the collection.**
 ```Smalltalk
-p := Palette new .
-p add: Color red;
-  add: Color lightBlue
-```
-**Or, adding a collection of colors:**
-```Smalltalk
-p := Palette new .
-p addAll: { Color red. Color blue. Color green }
+p := Palette withAll: { Color red. Color blue. Color green }
 ```
 **Get the collection of colors of the palette**
 ```Smalltalk
 p := Palette example24Colors.
-p allColors
+p asCollection
 ```
 
 "
@@ -54,17 +57,30 @@ Class {
 	#name : #Palette,
 	#superclass : #Object,
 	#instVars : [
-		'currentShift',
-		'allColors'
+		'colorsDictionary',
+		'index'
 	],
 	#category : #'ColorPalette-Palette'
 }
+
+{ #category : #private }
+Palette class >> checkAllElementsAreColors: aCollectionOfColors [
+
+	"private. check if all the elements of the collection are an instance of Color"
+
+	| collection |
+	collection := aCollectionOfColors isDictionary
+		              ifTrue: [ aCollectionOfColors values ]
+		              ifFalse: [ aCollectionOfColors ].
+	^ collection allSatisfy: [ :each | each isColor ]
+]
 
 { #category : #colors }
 Palette class >> example24Colors [
 	
 	| palette |
-	palette := self new 
+	palette := self new.
+	palette 
 		add: (Color fromString: '#4572a7');
 		add: (Color fromString: '#c0504d');
 		add: (Color fromString: '#9bbb28'); 
@@ -93,58 +109,95 @@ Palette class >> example24Colors [
 	
 ]
 
-{ #category : #adding }
-Palette >> add: aColor [
+{ #category : #'instance creation' }
+Palette class >> with: aColor [
 	
-	"add a Color to the collection. only an instance of Color is allowed"
+	| newInstance |
+	newInstance := self new .
+	newInstance add: aColor .
+	^ newInstance  
+]
+
+{ #category : #'instance creation' }
+Palette class >> withAll: collectionOfColors [
 	
-	aColor isColor 
-		ifTrue: [ allColors add: aColor]
-		ifFalse: [ ^ Error signal: 'The element added is not a valid Color' ]
-							
+	"I add all the colors contained in the collectionnOfColors to the dictionary. I take a collection of colors as values, so the keys will be their indexes according to their orders in the collection"
+	
+	| newInstance |
+	newInstance := self new.
+	(self checkAllElementsAreColors: collectionOfColors)
+		ifTrue: [ collectionOfColors do: [ :color | newInstance add: color ] ]
+		ifFalse: [ Error signal: 'Not all elements are instance of Color' ].
+	^ newInstance 
 ]
 
 { #category : #adding }
-Palette >> addAll: aCollectionOfColors [
+Palette >> add: aColor [
 
-	"add a collection of colors"
+	"I add a color whose key is an index to the dictionary of colors. Only an instance of Color is allowed"
 
-	^ (self checkAllElementsAreColors: aCollectionOfColors)
-		ifTrue: [ allColors addAll: aCollectionOfColors ]
+	aColor value isColor
+		ifTrue: [ 
+			colorsDictionary add: index -> aColor.
+			self updateIndexColor: index + 1 ]
+		ifFalse: [ ^ Error signal: 'The element added is not a valid Color' ]
+]
+
+{ #category : #adding }
+Palette >> addAll: aKeyedCollectionOfColors [
+
+	"I take a keyed collection of colors and i add all its pairs (key->value) to the colorsDictionary"
+	
+	| collectionAsOrderedDictionary |
+	collectionAsOrderedDictionary := aKeyedCollectionOfColors asOrderedDictionary .
+	(self class checkAllElementsAreColors: collectionAsOrderedDictionary)
+		ifTrue: [ 
+			collectionAsOrderedDictionary associationsDo: [ :each | 
+				self colorsDictionary add: each key -> each value ] ]
 		ifFalse: [ Error signal: 'Not all elements are instance of Color' ]
 ]
 
-{ #category : #accessing }
-Palette >> allColors [
-
-	^ allColors
+{ #category : #adding }
+Palette >> addName: aName forColor: color [
+	
+	"add a name for a color to the dictionary of colors"
+	
+	colorsDictionary add: aName -> color.
+	self updateIndexColor: (self colorsDictionary indexOfKey: aName).
 ]
 
-{ #category : #private }
-Palette >> checkAllElementsAreColors: aCollectionOfColors [
-	
-	"private. check if all the elements of the collection are an instance of Color"
-	
-	^ aCollectionOfColors allSatisfy: [ :each | each isColor ]
-							
+{ #category : #accessing }
+Palette >> asCollection [
+
+	^ colorsDictionary values
 ]
 
 { #category : #'color manipulation' }
-Palette >> colorAt: index [
+Palette >> colorAt: anIndex [
 
-	"get a color specefied by its index. If the index is negative then indexing starts from the tail of the collection."
+	"get a color at the index anIndex from the dictionary of colors. Use this method only if the keys are the indexes, otherwise use #colorFor:"
 
-	self updateCurrentColor: index.
-	^ allColors at: index
+	^ colorsDictionary at: anIndex
+]
+
+{ #category : #adding }
+Palette >> colorFor: key [
+	
+	"get a color specified by its name from the dictionary of colors"
+	
+	^ colorsDictionary at: key
 ]
 
 { #category : #accessing }
-Palette >> currentColor [
-	
-	"get the current color in the list of the colors"
+Palette >> colorsDictionary [
 
-	^ self colorAt: currentShift . 
-	
+	^ colorsDictionary
+]
+
+{ #category : #accessing }
+Palette >> colorsDictionary: anObject [
+
+	colorsDictionary := anObject
 ]
 
 { #category : #'palette-variant' }
@@ -153,8 +206,9 @@ Palette >> darkerPalette [
 	"returns the same palette but containing darker colors"
 	
 	| darkerColors |
-	darkerColors := allColors collect: [ :c |  c adjustBrightness: -0.3 ].
-	self allColors reset.
+	darkerColors := colorsDictionary collect: [ :each | each value adjustBrightness: -0.3 ].
+	self colorsDictionary removeAll .
+	self updateIndexColor: 1.
 	^ self 
 		addAll: darkerColors;
 		yourself
@@ -170,92 +224,54 @@ Palette >> first [
 Palette >> initialize [ 
 
 	super initialize .
-	allColors := OrderedCollection new.
-	currentShift := 1
+	colorsDictionary := OrderedDictionary new.
+	index := 1
 ]
 
 { #category : #accessing }
 Palette >> last [
 	
-	^ self colorAt: allColors size
+	^ self colorAt: self asCollection size
 ]
 
 { #category : #'palette-variant' }
 Palette >> lighterPalette [
 	
-	"returns the same palette but containing darker colors"
+	"returns the same palette but containing lighter colors"
 	
 	| lighterColors |
-	lighterColors := allColors collect: [ :c | 
-		                 c saturation >= 0.4
-			                 ifTrue: [ c adjustSaturation: -0.4 brightness: 0.08 ]
-			                 ifFalse: [ c adjustSaturation: -0.08 brightness: 0.08 ] ].
-	self allColors reset.
+	lighterColors := colorsDictionary collect: [ :each | 
+		                 each value saturation >= 0.4
+			                 ifTrue: [ each value adjustSaturation: -0.4 brightness: 0.08 ]
+			                 ifFalse: [ each value adjustSaturation: -0.08 brightness: 0.08 ] ].
+	self colorsDictionary removeAll .
+	self updateIndexColor: 1.
 	^ self
 		  addAll: lighterColors;
 		  yourself
 ]
 
 { #category : #accessing }
-Palette >> nextColor [
-	
-	"get the next color of the current color(use #currentColor) in the list of colors. If the current color is the last color, then the next color is the first color in the color list."
-	
-	| color nextShift |
-	nextShift := currentShift + 1.
-	nextShift > (allColors size) ifTrue: [ nextShift := 1 ].
-	color := self colorAt: nextShift. 
-	^ color
-]
+Palette >> renameColorAt: oldKey to: newKey [
 
-{ #category : #accessing }
-Palette >> previousColor [
-	
-	"get the previous color of the current color(use #currentColor) in the list of colors"
-	
-	| color previousShift |
-	previousShift := currentShift - 1.
-	previousShift < 1 ifTrue: [ previousShift := allColors size ].
-	color := self colorAt: previousShift. 
-	^ color
-]
+	"I rename a key of a color from the dictionary of the colors. A new ditionary is created with the same keys and values except the changed one"
 
-{ #category : #removing }
-Palette >> removeColor: color [
-	
-	"remove a color specified by its index from the collection of colors "
-	
-	^ self allColors remove: color ifAbsent: [ ^ 0 ]
-]
-
-{ #category : #removing }
-Palette >> removeColorAt: index [
-	
-	"remove a color specified by its index from the collection of colors "
-	
-	^ self allColors remove: (self allColors at: index)
+	| newColorsDictionary |
+	newColorsDictionary := OrderedDictionary new.
+	colorsDictionary associationsDo: [ :each | 
+		each key = oldKey
+			ifTrue: [ newColorsDictionary add: newKey -> each value ]
+			ifFalse: [ newColorsDictionary add: each key -> each value ] ].
+	self colorsDictionary: newColorsDictionary
 ]
 
 { #category : #'color manipulation' }
-Palette >> replaceColor: oldColor by: newColor [
+Palette >> replaceColorAt: anIndex with: newColor [
 
-	"replace a color oldColor by a new color newColor. This method modify the collection of colors and returns the newColor"
-	
-	(oldColor isColor and: newColor isColor) ifFalse: [ ^ Error signal: 'Only replace by an instance of Color' ].
-	^ allColors at: (allColors indexOf: oldColor ifAbsent: [^ 0]) put: newColor
-	
-	
-	
-
-]
-
-{ #category : #'color manipulation' }
-Palette >> replaceColorAt: anIndex by: newColor [
-
-	"replace a color specified by its index anIndex by a new color newColor. This method modify the collection of colors and returns the newColor"
+	"replace a color specified by its index anIndex by a new color newColor. This method modify the dictionary of colors and returns the newColor"
 	
 	newColor isColor ifFalse: [ ^ Error signal: 'Only replace by an instance of Color' ].
-	^ allColors at: anIndex put: newColor
+	^ colorsDictionary at: anIndex put: newColor
 	
 	
 	
@@ -275,7 +291,7 @@ Palette >> third [
 ]
 
 { #category : #private }
-Palette >> updateCurrentColor: index [
+Palette >> updateIndexColor: anIndex [
 
-	currentShift := index
+	index := anIndex
 ]

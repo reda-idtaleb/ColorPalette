@@ -10,7 +10,8 @@ Class {
 	#name : #ClpPaletteGenerator,
 	#superclass : #Object,
 	#instVars : [
-		'numberOfColors'
+		'numberOfColors',
+		'generatedPalette'
 	],
 	#category : #'ColorPalette-GeneratePalettes'
 }
@@ -28,22 +29,28 @@ ClpPaletteGenerator class >> isAbstract [
 ]
 
 { #category : #generating }
-ClpPaletteGenerator >> generate [ 
+ClpPaletteGenerator >> generate [
 
-	^ self generate: numberOfColors 
-	 
+	"generate 20 colors by default"
+
+	^ self generate: self numberOfColors
 ]
 
 { #category : #translating }
 ClpPaletteGenerator >> generate: aNumberOfColors [
 	
 	"return an object of palette with the specified number of colors"
-	| palette |
-	numberOfColors := aNumberOfColors .
-	palette := Palette new .
-	palette addAll: self makeColors .
-	^ palette
 	
+	self numberOfColors: aNumberOfColors .
+	^ generatedPalette class withAll: self makeColors .
+	
+	
+]
+
+{ #category : #accessing }
+ClpPaletteGenerator >> generatedPalette [
+
+	^ generatedPalette
 ]
 
 { #category : #'gt-inspection' }
@@ -52,7 +59,7 @@ ClpPaletteGenerator >> gtInspectorColorsIn: composite [
 	
 	^ composite fastTable
 		title: 'Colors';
-		display: [ self generate allColors ];
+		display: [ self generate asCollection ];
 		beMultiple;
 		enableElementIndex;
 		wantsAutomaticRefresh: true;
@@ -73,7 +80,8 @@ ClpPaletteGenerator >> gtInspectorColorsIn: composite [
 ClpPaletteGenerator >> initialize [ 
 	
 	super initialize .
-	numberOfColors := 20
+	numberOfColors := 20.
+	generatedPalette := GeneratedPalette new
 ]
 
 { #category : #accessing }

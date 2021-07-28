@@ -1,0 +1,21 @@
+Class {
+	#name : #MiDependencyButterflyPalette,
+	#superclass : #MiVisualizationPalette,
+	#category : #'ColorPalette-Palette'
+}
+
+{ #category : #style }
+MiDependencyButterflyPalette >> defaultStyle [ 
+
+	  self addName: #backgroundEntity forColor: Color red;
+				addName: #backgroundIncoming forColor: Color green;
+				addName: #backgroundOutgoing forColor: Color blue;
+				addName: #labelColor forColor: Color black;
+				addName: #edgeColor forColor: Color lightGray 
+]
+
+{ #category : #initialization }
+MiDependencyButterflyPalette >> initialize [ 
+
+	super initialize 
+]
