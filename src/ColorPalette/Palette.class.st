@@ -132,9 +132,9 @@ Palette >> addName: aName forColor: color [
 ]
 
 { #category : #accessing }
-Palette >> allColors [
+Palette >> asCollection [
 
-	^ allColors
+	^ colorsDictionary values
 ]
 
 { #category : #private }
