@@ -206,8 +206,9 @@ Palette >> darkerPalette [
 	"returns the same palette but containing darker colors"
 	
 	| darkerColors |
-	darkerColors := allColors collect: [ :c |  c adjustBrightness: -0.3 ].
-	self allColors reset.
+	darkerColors := colorsDictionary collect: [ :each | each value adjustBrightness: -0.3 ].
+	self colorsDictionary removeAll .
+	self updateIndexColor: 1.
 	^ self 
 		addAll: darkerColors;
 		yourself
@@ -236,14 +237,15 @@ Palette >> last [
 { #category : #'palette-variant' }
 Palette >> lighterPalette [
 	
-	"returns the same palette but containing darker colors"
+	"returns the same palette but containing lighter colors"
 	
 	| lighterColors |
-	lighterColors := allColors collect: [ :c | 
-		                 c saturation >= 0.4
-			                 ifTrue: [ c adjustSaturation: -0.4 brightness: 0.08 ]
-			                 ifFalse: [ c adjustSaturation: -0.08 brightness: 0.08 ] ].
-	self allColors reset.
+	lighterColors := colorsDictionary collect: [ :each | 
+		                 each value saturation >= 0.4
+			                 ifTrue: [ each value adjustSaturation: -0.4 brightness: 0.08 ]
+			                 ifFalse: [ each value adjustSaturation: -0.08 brightness: 0.08 ] ].
+	self colorsDictionary removeAll .
+	self updateIndexColor: 1.
 	^ self
 		  addAll: lighterColors;
 		  yourself
