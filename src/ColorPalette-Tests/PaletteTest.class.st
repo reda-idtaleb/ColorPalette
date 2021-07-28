@@ -2,33 +2,52 @@ Class {
 	#name : #PaletteTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'palette'
+		'emptyPalette',
+		'nonEmptyPalette',
+		'colors'
 	],
 	#category : #'ColorPalette-Tests-Palette-Test'
 }
+
+{ #category : #accessing }
+PaletteTest >> classToTest [ 
+
+	^ Palette
+]
+
+{ #category : #accessing }
+PaletteTest >> colors [
+
+	^ colors
+]
 
 { #category : #running }
 PaletteTest >> setUp [
 
 	super setUp.
-
-	palette := Palette new
-		           add: Color white;
-		           add: Color black;
-		           add: Color red;
-		           yourself
+	colors := { Color white. Color black. Color red }.
+	emptyPalette := self classToTest  new.
+	nonEmptyPalette := self classToTest  
+		                   withAll: colors
 ]
 
 { #category : #tests }
 PaletteTest >> testAdd [
 	
-	palette add: Color white.
-	self assert: palette first equals: Color white.
-	palette add: Color black.
-	self assert: palette last equals: Color black .
+	| c1 c2 |
+	c1 := Color green.
+	c2 := Color brown.
 	
-	self should: [palette add: 'notAColor'] raise: Error
-	
+	self assert: emptyPalette colorsDictionary isEmpty.
+
+	emptyPalette add: c1.
+	self assert: emptyPalette colorsDictionary size equals: 1.
+	self assert: (emptyPalette colorAt: 1) equals: c1.
+	emptyPalette add: c2.
+	self assert: emptyPalette colorsDictionary size equals: 2.
+	self assert: (emptyPalette colorAt: 2) equals: c2.
+
+	self should: [ emptyPalette add: 'notAColor' ] raise: Error
 ]
 
 { #category : #tests }
