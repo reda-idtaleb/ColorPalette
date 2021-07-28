@@ -28,5 +28,5 @@ ClpPaletteGeneratorTest >> setUp [
 { #category : #tests }
 ClpPaletteGeneratorTest >> testGenerate [
 
-	self assert: generator generate allColors size equals: generator numberOfColors  
+	self assert: generator generate asCollection size equals: generator numberOfColors  
 ]
