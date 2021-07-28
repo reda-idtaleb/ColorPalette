@@ -80,7 +80,7 @@ PaletteTest >> testAddNameForColor [
 { #category : #tests }
 PaletteTest >> testCheckAllElementsAreColors [
 	
-	self assert: (palette checkAllElementsAreColors: palette allColors). 
+	self assert: (nonEmptyPalette class checkAllElementsAreColors: nonEmptyPalette asCollection). 
 ]
 
 { #category : #tests }
