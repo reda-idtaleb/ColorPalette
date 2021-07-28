@@ -47,6 +47,12 @@ ClpPaletteGenerator >> generate: aNumberOfColors [
 	
 ]
 
+{ #category : #accessing }
+ClpPaletteGenerator >> generatedPalette [
+
+	^ generatedPalette
+]
+
 { #category : #'gt-inspection' }
 ClpPaletteGenerator >> gtInspectorColorsIn: composite [
 	<gtInspectorPresentationOrder: 0>
