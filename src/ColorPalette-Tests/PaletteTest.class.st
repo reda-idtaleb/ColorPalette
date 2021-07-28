@@ -66,6 +66,18 @@ PaletteTest >> testAddAll [
 ]
 
 { #category : #tests }
+PaletteTest >> testAddNameForColor [
+	
+	self assert: emptyPalette asCollection isEmpty.
+	
+	emptyPalette addName: #pink forColor: Color pink.
+	self assert: emptyPalette colorsDictionary size equals: 1.
+	self assert: (emptyPalette colorsDictionary includesAssociation: #pink -> Color pink).
+	
+	
+]
+
+{ #category : #tests }
 PaletteTest >> testCheckAllElementsAreColors [
 	
 	self assert: (palette checkAllElementsAreColors: palette allColors). 
