@@ -37,14 +37,6 @@ ClpDivergingPaletteGenerator class >> indexOfTheMiddleColor: aNumberOfColors [
 		           ifFalse: [ aNumberOfColors // 2 + 1 ]
 ]
 
-{ #category : #examples }
-ClpDivergingPaletteGenerator class >> paletteRedWhitePink [
-
-	<example>
-	^ self new generate 
-	
-]
-
 { #category : #accessing }
 ClpDivergingPaletteGenerator class >> s: startColor m: middleColor e: endColor [
 
