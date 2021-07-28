@@ -134,19 +134,20 @@ Palette class >> withAll: collectionOfColors [
 { #category : #adding }
 Palette >> add: aColor [
 
-	"I add a color whose key is an index to the dictionary of colors. Only an instance of Color is allowed"
+	"I add a color whose key is an index to the dictionary of colors. Only an instance of Color is allowed. The added color is returned"
 
 	aColor value isColor
 		ifTrue: [ 
 			colorsDictionary add: index -> aColor.
 			self updateIndexColor: index + 1 ]
-		ifFalse: [ ^ Error signal: 'The element added is not a valid Color' ]
+		ifFalse: [ ^ Error signal: 'The element added is not a valid Color' ].
+	^ aColor
 ]
 
 { #category : #adding }
 Palette >> addAll: aKeyedCollectionOfColors [
 
-	"I take a keyed collection of colors and i add all its pairs (key->value) to the colorsDictionary"
+	"I take a keyed collection of colors and i add all its pairs (key->value) to the colorsDictionary. I return the added collection"
 	
 	| collectionAsOrderedDictionary |
 	collectionAsOrderedDictionary := aKeyedCollectionOfColors asOrderedDictionary .
@@ -154,7 +155,8 @@ Palette >> addAll: aKeyedCollectionOfColors [
 		ifTrue: [ 
 			collectionAsOrderedDictionary associationsDo: [ :each | 
 				self colorsDictionary add: each key -> each value ] ]
-		ifFalse: [ Error signal: 'Not all elements are instance of Color' ]
+		ifFalse: [ Error signal: 'Not all elements are instance of Color' ].
+	^ aKeyedCollectionOfColors 
 ]
 
 { #category : #adding }
