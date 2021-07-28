@@ -93,6 +93,19 @@ ClpFixedQualitativePaletteGenerator class >> example24AccentColorsPalette [
 			  (Color fromString: '#ed0000') }
 ]
 
+{ #category : #examples }
+ClpFixedQualitativePaletteGenerator class >> example60AccentColorsPalette [
+	
+	| allColors |
+	allColors := OrderedCollection new .
+	allColors 
+		addAll: self example16AccentColorsPalette asCollection ;
+	 	addAll: self example20AccentColorsPalette asCollection ;
+		addAll: self example24AccentColorsPalette asCollection . 
+	^ self new generatedPalette class withAll: allColors 
+			
+]
+
 { #category : #'instance creation' }
 ClpFixedQualitativePaletteGenerator >> fromColors: aCollectionOfColors get: aNumberOfColors [
 
