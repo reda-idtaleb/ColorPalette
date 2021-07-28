@@ -1,6 +1,11 @@
 "
-I am the qualitative palette, i can generate a qualitative palette from a starting a color specefied by the user. 
+I am the qualitative palette, i can generate a qualitative palette from a starting color. 
 
+**Example generate a palette of 10 colors:**
+```Smalltalk
+p := ClpQualitativePaletteGenerator generate: 10.
+p asCollection 
+```
 "
 Class {
 	#name : #ClpQualitativePaletteGenerator,
