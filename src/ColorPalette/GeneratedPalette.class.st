@@ -11,6 +11,26 @@ Class {
 }
 
 { #category : #accessing }
+GeneratedPalette >> colorAt: anIndex [
+	
+	"I return the color at the index anIndex from the colorsDictionary. When using this method, the #currentColor is updated to the returned value"
+	
+	self updateCurrentColor: anIndex.
+	^ super colorAt: anIndex 	
+]
+
+{ #category : #accessing }
+GeneratedPalette >> colorFor: key [
+	
+	"I return the color specified by its key from the dictionary of colors. When using this method, the #currentColor is updated to the value returned"
+	
+	| indexOfKey |
+	indexOfKey := self colorsDictionary indexOfKey: key.
+	self updateCurrentColor: indexOfKey.
+	^ super colorFor: key
+]
+
+{ #category : #accessing }
 GeneratedPalette >> currentColor [
 	
 	"get the current color in the list of the colors"
