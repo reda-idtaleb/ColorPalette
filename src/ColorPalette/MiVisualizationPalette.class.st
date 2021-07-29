@@ -10,7 +10,7 @@ Class {
 { #category : #style }
 MiVisualizationPalette >> beDefaultStyle [ 
 
-	self addName: #HighlightColor forColor: Color yellow darker  
+	self addName: #highlightColor forColor: Color yellow darker  
 		"no highlightColor -> theme selectionColor"
 ]
 
