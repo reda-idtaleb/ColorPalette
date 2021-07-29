@@ -9,43 +9,34 @@ p add: Color red;
   add: Color lightBlue
 ```
 
-Use **#addName:forColor:** to add a color as a value with a name as a key.
-
-**To select a color by its index, Use #colorAt: only if the keys are indices:**
+Use **#addName:forColor:** to add a color that you would like to name differently.
 ```Smalltalk
-p := Palette example24Colors.
-p colorAt: 1
+p := Palette new .
+p 
+	addName: #whiteBackground forColor: Color white;
+	addName: #textColor forColor: Color black;
+	colorsDictionary ""show the dictionary of colors""
 ```
 
-**To move between colors:**
+**To select a color use #colorAt:**
 ```Smalltalk
-p := Palette example24Colors.
-p currentColor ""by default returns the first color in the list of colors in the palette"" 
-```
-**You can get the next color:**
-```Smalltalk
-p := Palette example24Colors.
-p nextColor ""return the next color of the current color""
-```
+p := Palette sample24Colors.
+p colorAt: 1. ""return the first color""
 
-**You can also get the previous color:**
-```Smalltalk
-p := Palette example24Colors.
-p previousColor ""return the previous color of the current color""
-```
-If you have chosen a color, so the current color is the selected color
-```Smalltalk
-p := Palette example24Colors.
-p colorAt: 3. ""the 3rd color is chosen""
-p currentColor. ""return the 3rd color""
-p nextColor. ""return the 4th color"" 
-p currentColor ""return the 4th color""
+p := Palette new .
+p 
+	addName: #whiteBackground forColor: Color white;
+	addName: #textColor forColor: Color black;
+	colorAt: #whiteBackground ""return color white""
 ```
 
 **Use #withAll: to add a collection of colors, so that the keys are the indexes of each color according to their order in the collection.**
 ```Smalltalk
 p := Palette withAll: { Color red. Color blue. Color green }
 ```
+
+Use **#colorsDictionary** to get the dictionary of all the colors of the palette
+
 **Get the collection of colors of the palette**
 ```Smalltalk
 p := Palette example24Colors.
