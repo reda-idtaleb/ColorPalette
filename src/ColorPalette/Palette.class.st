@@ -68,11 +68,7 @@ Palette class >> checkAllElementsAreColors: aCollectionOfColors [
 
 	"private. check if all the elements of the collection are an instance of Color"
 
-	| collection |
-	collection := aCollectionOfColors isDictionary
-		              ifTrue: [ aCollectionOfColors values ]
-		              ifFalse: [ aCollectionOfColors ].
-	^ collection allSatisfy: [ :each | each isColor ]
+	^ aCollectionOfColors allSatisfy: [ :each | each isColor ]
 ]
 
 { #category : #colors }
