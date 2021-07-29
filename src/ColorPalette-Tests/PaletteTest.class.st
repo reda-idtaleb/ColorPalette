@@ -87,7 +87,12 @@ PaletteTest >> testCheckAllElementsAreColors [
 PaletteTest >> testColorAt [
 
 	self assert: (nonEmptyPalette colorAt: 1) equals: self colors first.
-	self assert: (nonEmptyPalette colorAt: 2) equals: self colors second
+	self assert: (nonEmptyPalette colorAt: 2) equals: self colors second.
+	
+	emptyPalette addName: #red forColor: Color red. 
+	emptyPalette addName: #white forColor: Color white. 
+	self assert: (emptyPalette colorAt: #red) equals: Color red.
+	self assert: (emptyPalette colorAt: #white) equals: Color white.
 ]
 
 { #category : #tests }
