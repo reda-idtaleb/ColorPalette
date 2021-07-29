@@ -151,7 +151,7 @@ Palette >> addAll: aKeyedCollectionOfColors [
 	
 	| collectionAsOrderedDictionary |
 	collectionAsOrderedDictionary := aKeyedCollectionOfColors asOrderedDictionary .
-	(self class checkAllElementsAreColors: collectionAsOrderedDictionary)
+	(self class checkAllElementsAreColors: collectionAsOrderedDictionary values)
 		ifTrue: [ 
 			collectionAsOrderedDictionary associationsDo: [ :each | 
 				self colorsDictionary add: each key -> each value ] ]
