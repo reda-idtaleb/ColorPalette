@@ -149,9 +149,9 @@ ClpFixedQualitativePaletteGenerator >> initialize [
 ClpFixedQualitativePaletteGenerator >> makeColors [
 	
 	self numberOfColors
-	> self class example60AccentColorsPalette asCollection size ifTrue: [ 
+	> self class sample60AccentColors asCollection size ifTrue: [ 
 		Error signal: 'Maximum number of colors to choose is 60' ].
 	^ self
-		  fromColors: self class example60AccentColorsPalette asCollection
+		  fromColors: self class sample60AccentColors asCollection
 		  get: self numberOfColors
 ]
