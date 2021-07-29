@@ -68,15 +68,18 @@ Palette class >> checkAllElementsAreColors: aCollectionOfColors [
 
 	"private. check if all the elements of the collection are an instance of Color"
 
-	| collection |
-	collection := aCollectionOfColors isDictionary
-		              ifTrue: [ aCollectionOfColors values ]
-		              ifFalse: [ aCollectionOfColors ].
-	^ collection allSatisfy: [ :each | each isColor ]
+	^ aCollectionOfColors allSatisfy: [ :each | each isColor ]
 ]
 
 { #category : #colors }
 Palette class >> example24Colors [
+	
+	self sample24Colors asCollection inspect
+	
+]
+
+{ #category : #colors }
+Palette class >> sample24Colors [
 	
 	| palette |
 	palette := self new.
@@ -110,15 +113,6 @@ Palette class >> example24Colors [
 ]
 
 { #category : #'instance creation' }
-Palette class >> with: aColor [
-	
-	| newInstance |
-	newInstance := self new .
-	newInstance add: aColor .
-	^ newInstance  
-]
-
-{ #category : #'instance creation' }
 Palette class >> withAll: collectionOfColors [
 	
 	"I add all the colors contained in the collectionnOfColors to the dictionary. I take a collection of colors as values, so the keys will be their indexes according to their orders in the collection"
@@ -134,36 +128,39 @@ Palette class >> withAll: collectionOfColors [
 { #category : #adding }
 Palette >> add: aColor [
 
-	"I add a color whose key is an index to the dictionary of colors. Only an instance of Color is allowed"
+	"I add a color whose key is an index to the dictionary of colors. Only an instance of Color is allowed. The added color is returned"
 
 	aColor value isColor
 		ifTrue: [ 
 			colorsDictionary add: index -> aColor.
 			self updateIndexColor: index + 1 ]
-		ifFalse: [ ^ Error signal: 'The element added is not a valid Color' ]
+		ifFalse: [ ^ Error signal: 'The element added is not a valid Color' ].
+	^ aColor
 ]
 
 { #category : #adding }
 Palette >> addAll: aKeyedCollectionOfColors [
 
-	"I take a keyed collection of colors and i add all its pairs (key->value) to the colorsDictionary"
+	"I take a keyed collection of colors and i add all its pairs (key->value) to the colorsDictionary. I return the added collection"
 	
 	| collectionAsOrderedDictionary |
 	collectionAsOrderedDictionary := aKeyedCollectionOfColors asOrderedDictionary .
-	(self class checkAllElementsAreColors: collectionAsOrderedDictionary)
+	(self class checkAllElementsAreColors: collectionAsOrderedDictionary values)
 		ifTrue: [ 
 			collectionAsOrderedDictionary associationsDo: [ :each | 
 				self colorsDictionary add: each key -> each value ] ]
-		ifFalse: [ Error signal: 'Not all elements are instance of Color' ]
+		ifFalse: [ Error signal: 'Not all elements are instance of Color' ].
+	^ aKeyedCollectionOfColors 
 ]
 
 { #category : #adding }
 Palette >> addName: aName forColor: color [
 	
-	"add a name for a color to the dictionary of colors"
+	"Associate a name 'aName' with a color 'color' and add it to the color dictionary"
 	
 	colorsDictionary add: aName -> color.
 	self updateIndexColor: (self colorsDictionary indexOfKey: aName).
+	
 ]
 
 { #category : #accessing }
@@ -178,14 +175,6 @@ Palette >> colorAt: anIndex [
 	"get a color at the index anIndex from the dictionary of colors. Use this method only if the keys are the indexes, otherwise use #colorFor:"
 
 	^ colorsDictionary at: anIndex
-]
-
-{ #category : #adding }
-Palette >> colorFor: key [
-	
-	"get a color specified by its name from the dictionary of colors"
-	
-	^ colorsDictionary at: key
 ]
 
 { #category : #accessing }
@@ -214,24 +203,12 @@ Palette >> darkerPalette [
 		yourself
 ]
 
-{ #category : #accessing }
-Palette >> first [ 
-	
-	^ self colorAt: 1
-]
-
 { #category : #initialization }
 Palette >> initialize [ 
 
 	super initialize .
 	colorsDictionary := OrderedDictionary new.
 	index := 1
-]
-
-{ #category : #accessing }
-Palette >> last [
-	
-	^ self colorAt: self asCollection size
 ]
 
 { #category : #'palette-variant' }
@@ -276,18 +253,6 @@ Palette >> replaceColorAt: anIndex with: newColor [
 	
 	
 
-]
-
-{ #category : #accessing }
-Palette >> second [ 
-	
-	^ self colorAt: 2
-]
-
-{ #category : #accessing }
-Palette >> third [
-	
-	^ self colorAt: 3
 ]
 
 { #category : #private }

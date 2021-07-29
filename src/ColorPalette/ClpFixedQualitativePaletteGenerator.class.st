@@ -16,7 +16,31 @@ Class {
 }
 
 { #category : #examples }
-ClpFixedQualitativePaletteGenerator class >> example16AccentColorsPalette [
+ClpFixedQualitativePaletteGenerator class >> example16AccentColors [
+
+	self sample16AccentColors asCollection inspect
+]
+
+{ #category : #examples }
+ClpFixedQualitativePaletteGenerator class >> example20AccentColors [
+
+	self sample20AccentColors asCollection inspect
+]
+
+{ #category : #examples }
+ClpFixedQualitativePaletteGenerator class >> example24AccentColors [
+
+	self sample24AccentColors asCollection inspect
+]
+
+{ #category : #examples }
+ClpFixedQualitativePaletteGenerator class >> example60AccentColors [
+	
+	self sample60AccentColors asCollection inspect
+]
+
+{ #category : #samples }
+ClpFixedQualitativePaletteGenerator class >> sample16AccentColors [
 
 	^ self new generatedPalette class withAll: { 
 			  (Color fromString: '#7a7377').
@@ -37,8 +61,8 @@ ClpFixedQualitativePaletteGenerator class >> example16AccentColorsPalette [
 			  (Color fromString: '#000000')}
 ]
 
-{ #category : #examples }
-ClpFixedQualitativePaletteGenerator class >> example20AccentColorsPalette [
+{ #category : #samples }
+ClpFixedQualitativePaletteGenerator class >> sample20AccentColors [
 
 	^ self new generatedPalette class withAll: { 
 			  (Color fromString: '#ff00b6').
@@ -63,8 +87,8 @@ ClpFixedQualitativePaletteGenerator class >> example20AccentColorsPalette [
 			  (Color fromString: '#b09900') }
 ]
 
-{ #category : #examples }
-ClpFixedQualitativePaletteGenerator class >> example24AccentColorsPalette [
+{ #category : #samples }
+ClpFixedQualitativePaletteGenerator class >> sample24AccentColors [
 
 	^ self new generatedPalette class withAll: { 
 			  (Color fromString: '#ACA8AA').
@@ -93,15 +117,15 @@ ClpFixedQualitativePaletteGenerator class >> example24AccentColorsPalette [
 			  (Color fromString: '#ed0000') }
 ]
 
-{ #category : #examples }
-ClpFixedQualitativePaletteGenerator class >> example60AccentColorsPalette [
+{ #category : #samples }
+ClpFixedQualitativePaletteGenerator class >> sample60AccentColors [
 	
 	| allColors |
 	allColors := OrderedCollection new .
 	allColors 
-		addAll: self example16AccentColorsPalette asCollection ;
-	 	addAll: self example20AccentColorsPalette asCollection ;
-		addAll: self example24AccentColorsPalette asCollection . 
+		addAll: self sample16AccentColors asCollection ;
+	 	addAll: self sample20AccentColors asCollection ;
+		addAll: self sample24AccentColors asCollection . 
 	^ self new generatedPalette class withAll: allColors 
 			
 ]
@@ -125,9 +149,9 @@ ClpFixedQualitativePaletteGenerator >> initialize [
 ClpFixedQualitativePaletteGenerator >> makeColors [
 	
 	self numberOfColors
-	> self class example60AccentColorsPalette asCollection size ifTrue: [ 
+	> self class sample60AccentColors asCollection size ifTrue: [ 
 		Error signal: 'Maximum number of colors to choose is 60' ].
 	^ self
-		  fromColors: self class example60AccentColorsPalette asCollection
+		  fromColors: self class sample60AccentColors asCollection
 		  get: self numberOfColors
 ]

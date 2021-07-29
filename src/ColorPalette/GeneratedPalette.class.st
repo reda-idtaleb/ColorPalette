@@ -39,11 +39,23 @@ GeneratedPalette >> currentColor [
 	
 ]
 
+{ #category : #accessing }
+GeneratedPalette >> first [ 
+	
+	^ self colorAt: 1
+]
+
 { #category : #initialization }
 GeneratedPalette >> initialize [ 
 
 	super initialize .
 	currentShift := 1
+]
+
+{ #category : #accessing }
+GeneratedPalette >> last [
+	
+	^ self colorAt: self asCollection size
 ]
 
 { #category : #accessing }
@@ -84,6 +96,18 @@ GeneratedPalette >> removeColorAt: aKey [
 		each key = aKey ifFalse: [ newColorsDictionary at: each key put: each value ]  ].
 	self colorsDictionary: newColorsDictionary .
 	^ removedColor 
+]
+
+{ #category : #accessing }
+GeneratedPalette >> second [ 
+	
+	^ self colorAt: 2
+]
+
+{ #category : #accessing }
+GeneratedPalette >> third [
+	
+	^ self colorAt: 3
 ]
 
 { #category : #private }
