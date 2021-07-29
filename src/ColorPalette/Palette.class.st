@@ -113,15 +113,6 @@ Palette class >> sample24Colors [
 ]
 
 { #category : #'instance creation' }
-Palette class >> with: aColor [
-	
-	| newInstance |
-	newInstance := self new .
-	newInstance add: aColor .
-	^ newInstance  
-]
-
-{ #category : #'instance creation' }
 Palette class >> withAll: collectionOfColors [
 	
 	"I add all the colors contained in the collectionnOfColors to the dictionary. I take a collection of colors as values, so the keys will be their indexes according to their orders in the collection"
