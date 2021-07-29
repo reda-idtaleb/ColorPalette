@@ -211,24 +211,12 @@ Palette >> darkerPalette [
 		yourself
 ]
 
-{ #category : #accessing }
-Palette >> first [ 
-	
-	^ self colorAt: 1
-]
-
 { #category : #initialization }
 Palette >> initialize [ 
 
 	super initialize .
 	colorsDictionary := OrderedDictionary new.
 	index := 1
-]
-
-{ #category : #accessing }
-Palette >> last [
-	
-	^ self colorAt: self asCollection size
 ]
 
 { #category : #'palette-variant' }
@@ -273,18 +261,6 @@ Palette >> replaceColorAt: anIndex with: newColor [
 	
 	
 
-]
-
-{ #category : #accessing }
-Palette >> second [ 
-	
-	^ self colorAt: 2
-]
-
-{ #category : #accessing }
-Palette >> third [
-	
-	^ self colorAt: 3
 ]
 
 { #category : #private }
