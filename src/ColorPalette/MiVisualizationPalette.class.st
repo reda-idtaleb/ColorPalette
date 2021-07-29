@@ -18,5 +18,5 @@ MiVisualizationPalette >> beDefaultStyle [
 MiVisualizationPalette >> initialize [
 
 	super initialize .
-	self defaultStyle
+	self  beDefaultStyle
 ]
