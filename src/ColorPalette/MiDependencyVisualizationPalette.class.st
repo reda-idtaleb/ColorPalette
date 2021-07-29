@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #style }
-MiDependencyVisualizationPalette >> defaultStyle [
+MiDependencyVisualizationPalette >> beDefaultStyle [
 
 	 self
 		  addName: #linksColor forColor: Color black;
@@ -15,10 +15,4 @@ MiDependencyVisualizationPalette >> defaultStyle [
 		  addName: #numberOfLinesBeginScale forColor: Color white;  "this is for background boxes"
 		  addName: #numberOfLinesEndScale forColor: Color darkGray; "this is for background boxes"
 		  addName: #highlightEntity forColor: Color yellow darker "when we hover an entity"
-]
-
-{ #category : #initialization }
-MiDependencyVisualizationPalette >> initialize [ 
-
-	super initialize 
 ]

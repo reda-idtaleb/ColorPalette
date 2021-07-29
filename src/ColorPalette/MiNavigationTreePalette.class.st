@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #style }
-MiNavigationTreePalette >> defaultStyle [ 
+MiNavigationTreePalette >> beDefaultStyle [ 
 
 	 self
 	  		addName: #backgroundReceivedEntity forColor: Color red;
@@ -15,10 +15,4 @@ MiNavigationTreePalette >> defaultStyle [
 			addName: #edgeColor forColor: Color lightGray ;
 			addName: #labelColor forColor: Color black
 			
-]
-
-{ #category : #initialization }
-MiNavigationTreePalette >> initialize [ 
-
-	super initialize 
 ]

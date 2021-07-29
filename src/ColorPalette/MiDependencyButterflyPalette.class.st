@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #style }
-MiDependencyButterflyPalette >> defaultStyle [ 
+MiDependencyButterflyPalette >> beDefaultStyle [ 
 
 	  self addName: #backgroundEntity forColor: Color red;
 				addName: #backgroundIncoming forColor: Color green;
