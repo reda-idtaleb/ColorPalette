@@ -74,6 +74,13 @@ Palette class >> checkAllElementsAreColors: aCollectionOfColors [
 { #category : #colors }
 Palette class >> example24Colors [
 	
+	self sample24Colors asCollection inspect
+	
+]
+
+{ #category : #colors }
+Palette class >> sample24Colors [
+	
 	| palette |
 	palette := self new.
 	palette 
